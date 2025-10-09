@@ -1,4 +1,23 @@
+'use client'
+
+import { useState } from 'react'
+import PayPalButton from '@/components/PayPalButton'
+
 export default function GroupEconomicsPage() {
+  const [selectedPrice, setSelectedPrice] = useState<string | null>(null)
+  const [showPayment, setShowPayment] = useState(false)
+
+  const handlePriceSelect = (price: string) => {
+    setSelectedPrice(price)
+    setShowPayment(true)
+  }
+
+  const handlePaymentSuccess = () => {
+    alert('Payment successful! Check your email for course access.')
+    setShowPayment(false)
+    setSelectedPrice(null)
+  }
+
   return (
     <div className="container mx-auto py-12 px-4">
       <h1 className="text-4xl font-bold text-wett-gold mb-8">Group Economics Mastery</h1>
@@ -56,7 +75,7 @@ export default function GroupEconomicsPage() {
               <h4 className="font-bold text-white mb-2">Solidarity Price</h4>
               <div className="text-3xl font-bold text-wett-gold mb-2">$10</div>
               <p className="text-sm text-gray-300 mb-3">For those with limited means. No questions asked.</p>
-              <button className="w-full bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-500 transition">Select</button>
+              <button onClick={() => handlePriceSelect('10')} className="w-full bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-500 transition">Select</button>
             </div>
             
             <div className="bg-gray-700 p-4 rounded border-2 border-wett-gold">
@@ -64,14 +83,14 @@ export default function GroupEconomicsPage() {
               <h4 className="font-bold text-white mb-2">Standard Price</h4>
               <div className="text-3xl font-bold text-wett-gold mb-2">$50</div>
               <p className="text-sm text-gray-300 mb-3">Covers course delivery and hosting costs.</p>
-              <button className="w-full bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition">Select</button>
+              <button onClick={() => handlePriceSelect('50')} className="w-full bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition">Select</button>
             </div>
             
             <div className="bg-gray-700 p-4 rounded border-2 border-gray-600">
               <h4 className="font-bold text-white mb-2">Supporter Price</h4>
               <div className="text-3xl font-bold text-wett-gold mb-2">$75</div>
               <p className="text-sm text-gray-300 mb-3">Helps subsidize others. Thank you for giving back!</p>
-              <button className="w-full bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-500 transition">Select</button>
+              <button onClick={() => handlePriceSelect('75')} className="w-full bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-500 transition">Select</button>
             </div>
           </div>
           
@@ -109,6 +128,20 @@ export default function GroupEconomicsPage() {
             <p className="text-sm text-gray-400 mb-2">Need full scholarship? <a href="#" className="text-wett-gold hover:underline">Apply here</a> (simple form, no proof required)</p>
             <p className="text-xs text-gray-500">🎓 23 scholarships funded this month by our community</p>
           </div>
+
+          {showPayment && selectedPrice && (
+            <div className="bg-gray-700 p-6 rounded-lg mt-6 border-2 border-wett-gold">
+              <div className="flex justify-between items-center mb-4">
+                <h4 className="font-bold text-white text-xl">Complete Payment - ${selectedPrice}</h4>
+                <button onClick={() => setShowPayment(false)} className="text-gray-400 hover:text-white text-2xl">✕</button>
+              </div>
+              <PayPalButton 
+                amount={selectedPrice} 
+                description="Group Economics Mastery Course" 
+                onSuccess={handlePaymentSuccess}
+              />
+            </div>
+          )}
         </div>
       </div>
 
