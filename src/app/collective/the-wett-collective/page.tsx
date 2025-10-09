@@ -1,3 +1,5 @@
+'use client';
+
 import PayWhatYouWant from '@/components/PayWhatYouWant'
 
 const investmentOpportunities = [

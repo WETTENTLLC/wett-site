@@ -29,7 +29,7 @@ export default function CommunityForumPage() {
       })
     });
 
-    alert('Post submitted! We\'ll review and add it to the forum.');
+    alert('Post submitted! We will review and add it to the forum.');
     setFormData({ name: '', email: '', title: '', content: '' });
     setShowNewPost(false);
   };
@@ -136,7 +136,7 @@ export default function CommunityForumPage() {
             )}
 
             <div className="bg-gray-900 p-6 rounded-lg text-center">
-              <p className="text-gray-400 mb-4">Forum posts are currently moderated. Submit your post above and we'll add it to the community.</p>
+              <p className="text-gray-400 mb-4">Forum posts are currently moderated. Submit your post above and we will add it to the community.</p>
               <p className="text-sm text-gray-500">Coming soon: Real-time discussions and comments</p>
             </div>
           </div>

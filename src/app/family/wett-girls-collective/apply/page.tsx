@@ -113,7 +113,7 @@ export default function WETTGirlsApplication() {
           </div>
 
           <div>
-            <label className="block text-wett-gold font-semibold mb-2">What's your experience? (modeling, dancing, content creation, business, etc.) *</label>
+            <label className="block text-wett-gold font-semibold mb-2">What&apos;s your experience? (modeling, dancing, content creation, business, etc.) *</label>
             <textarea
               required
               rows={4}
@@ -146,7 +146,7 @@ export default function WETTGirlsApplication() {
           </div>
 
           <div>
-            <label className="block text-wett-gold font-semibold mb-2">What's your availability? (full-time, part-time, weekends, etc.) *</label>
+            <label className="block text-wett-gold font-semibold mb-2">What&apos;s your availability? (full-time, part-time, weekends, etc.) *</label>
             <input
               type="text"
               required

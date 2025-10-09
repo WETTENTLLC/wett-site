@@ -1,3 +1,5 @@
+'use client';
+
 import PayWhatYouWant from '@/components/PayWhatYouWant'
 
 export default function WettStudiosGuild() {
