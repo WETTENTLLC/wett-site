@@ -1,37 +1,328 @@
-import CourseCard, { Course } from '@/components/CourseCard';
-
-const courses: Course[] = [
-  {
-    id: '1',
-    title: 'Introduction to Group Economics',
-    description: 'Learn the fundamental principles of group economics and how to apply them in your community.',
-    imageUrl: '/placeholders/course1.png', // Placeholder image
-    duration: '4 Weeks',
-  },
-  {
-    id: '2',
-    title: 'The WETT Doctrine: Financial Strategy',
-    description: 'A deep dive into the financial strategies that power the WETT empire.',
-    imageUrl: '/placeholders/course2.png', // Placeholder image
-    duration: '6 Weeks',
-  },
-  {
-    id: '3',
-    title: 'Business Incubation 101',
-    description: 'From idea to launch, this course covers the essentials of starting a successful business.',
-    imageUrl: '/placeholders/course3.png', // Placeholder image
-    duration: '8 Weeks',
-  },
-];
-
 export default function GroupEconomicsPage() {
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-4xl font-bold text-wett-gold text-center mb-8">Group Economics Mastery</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {courses.map((course) => (
-          <CourseCard key={course.id} course={course} />
-        ))}
+    <div className="container mx-auto py-12 px-4">
+      <h1 className="text-4xl font-bold text-wett-gold mb-8">Group Economics Mastery</h1>
+      <p className="text-lg text-gray-300 mb-12">Access courses and financial templates to build collective wealth.</p>
+      
+      <div className="bg-gray-800 p-6 rounded-lg mb-8">
+        <h2 className="text-3xl font-bold text-wett-gold mb-4">Mastery Class: Group Economics</h2>
+        <p className="text-gray-300 mb-6">&quot;Many hands make light work&quot; - Learn to pool resources, build cooperative networks, and harness the power of the village approach.</p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          <div className="bg-gray-700 p-4 rounded">
+            <h3 className="font-bold text-wett-gold mb-2">Week 1: Why Combine Forces?</h3>
+            <p className="text-sm text-gray-300">Pooling resources, mutual aid, and the village model</p>
+          </div>
+          <div className="bg-gray-700 p-4 rounded">
+            <h3 className="font-bold text-wett-gold mb-2">Week 2-3: Mechanisms</h3>
+            <p className="text-sm text-gray-300">Co-ops, lending circles, investment clubs</p>
+          </div>
+          <div className="bg-gray-700 p-4 rounded">
+            <h3 className="font-bold text-wett-gold mb-2">Week 4-5: Behavioral Economics</h3>
+            <p className="text-sm text-gray-300">Trust, free-riders, and overcoming roadblocks</p>
+          </div>
+          <div className="bg-gray-700 p-4 rounded">
+            <h3 className="font-bold text-wett-gold mb-2">Week 6-8: Wealth Creation</h3>
+            <p className="text-sm text-gray-300">Case studies on shared work and profits</p>
+          </div>
+          <div className="bg-gray-700 p-4 rounded">
+            <h3 className="font-bold text-wett-gold mb-2">Week 9-12: Practical Tools</h3>
+            <p className="text-sm text-gray-300">Legal frameworks and decision-making</p>
+          </div>
+          <div className="bg-gray-700 p-4 rounded">
+            <h3 className="font-bold text-wett-gold mb-2">Week 13-16: Capstone</h3>
+            <p className="text-sm text-gray-300">Launch your community project</p>
+          </div>
+        </div>
+        
+        <div className="bg-gray-900 p-4 rounded mb-4">
+          <h3 className="font-bold text-white mb-3">Week 1 Assignment: Community Resource Map</h3>
+          <p className="text-sm text-gray-300 mb-2">List and diagram all your personal and community networks where resources or support flow in both directions:</p>
+          <ul className="text-sm text-gray-300 space-y-1 ml-4">
+            <li>• Family networks</li>
+            <li>• Faith groups</li>
+            <li>• Clubs and organizations</li>
+            <li>• Online communities</li>
+            <li>• Business circles</li>
+          </ul>
+        </div>
+        
+        <div className="bg-gray-900 p-6 rounded-lg mt-6">
+          <h3 className="text-xl font-bold text-wett-gold mb-4">💰 Fair Pay Structure - Choose What You Can Afford</h3>
+          <p className="text-gray-300 mb-4">We believe learning about group economics should be accessible. Choose a price that fits your situation. Every dollar above our minimum covers a scholarship for another learner—thank you for lifting up your community!</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-gray-700 p-4 rounded border-2 border-gray-600">
+              <h4 className="font-bold text-white mb-2">Solidarity Price</h4>
+              <div className="text-3xl font-bold text-wett-gold mb-2">$10</div>
+              <p className="text-sm text-gray-300 mb-3">For those with limited means. No questions asked.</p>
+              <button className="w-full bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-500 transition">Select</button>
+            </div>
+            
+            <div className="bg-gray-700 p-4 rounded border-2 border-wett-gold">
+              <div className="text-xs text-wett-gold font-bold mb-1">MOST POPULAR</div>
+              <h4 className="font-bold text-white mb-2">Standard Price</h4>
+              <div className="text-3xl font-bold text-wett-gold mb-2">$50</div>
+              <p className="text-sm text-gray-300 mb-3">Covers course delivery and hosting costs.</p>
+              <button className="w-full bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition">Select</button>
+            </div>
+            
+            <div className="bg-gray-700 p-4 rounded border-2 border-gray-600">
+              <h4 className="font-bold text-white mb-2">Supporter Price</h4>
+              <div className="text-3xl font-bold text-wett-gold mb-2">$75</div>
+              <p className="text-sm text-gray-300 mb-3">Helps subsidize others. Thank you for giving back!</p>
+              <button className="w-full bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-500 transition">Select</button>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="bg-gray-700 p-4 rounded">
+              <h4 className="font-bold text-white mb-2">💳 Payment Options</h4>
+              <div className="space-y-2 text-sm text-gray-300">
+                <label className="flex items-center gap-2">
+                  <input type="radio" name="payment" className="text-wett-gold" defaultChecked />
+                  <span>Pay in Full</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="radio" name="payment" className="text-wett-gold" />
+                  <span>4 Monthly Payments (no interest)</span>
+                </label>
+              </div>
+            </div>
+            
+            <div className="bg-gray-700 p-4 rounded">
+              <h4 className="font-bold text-white mb-2">🤝 Additional Options</h4>
+              <div className="space-y-2 text-sm text-gray-300">
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" className="text-wett-gold" />
+                  <span>Add $10 donation to scholarship fund</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" className="text-wett-gold" />
+                  <span>Group rate (5+ people, 30% off each)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-gray-800 p-4 rounded text-center">
+            <p className="text-sm text-gray-400 mb-2">Need full scholarship? <a href="#" className="text-wett-gold hover:underline">Apply here</a> (simple form, no proof required)</p>
+            <p className="text-xs text-gray-500">🎓 23 scholarships funded this month by our community</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gray-800 p-6 rounded-lg mb-8">
+        <h2 className="text-2xl font-bold text-wett-gold mb-4">📋 Sample Lesson: Many Hands, One Village</h2>
+        <p className="text-gray-300 mb-4">First session breakdown (90 minutes):</p>
+        <div className="space-y-3">
+          <div className="bg-gray-700 p-3 rounded">
+            <div className="flex justify-between items-start mb-1">
+              <h4 className="font-bold text-white text-sm">1. Welcome & Warm-Up</h4>
+              <span className="text-wett-gold text-xs">10 min</span>
+            </div>
+            <p className="text-xs text-gray-300">Share: &quot;A time when working with others made a task easier&quot;</p>
+          </div>
+          <div className="bg-gray-700 p-3 rounded">
+            <div className="flex justify-between items-start mb-1">
+              <h4 className="font-bold text-white text-sm">2. Mini Lecture: Group Economics in Everyday Life</h4>
+              <span className="text-wett-gold text-xs">15 min</span>
+            </div>
+            <p className="text-xs text-gray-300">History, benefits, examples from diverse cultures</p>
+          </div>
+          <div className="bg-gray-700 p-3 rounded">
+            <div className="flex justify-between items-start mb-1">
+              <h4 className="font-bold text-white text-sm">3. Activity: Community Resource Map</h4>
+              <span className="text-wett-gold text-xs">20 min</span>
+            </div>
+            <p className="text-xs text-gray-300">Diagram your networks and resource flows</p>
+          </div>
+          <div className="bg-gray-700 p-3 rounded">
+            <div className="flex justify-between items-start mb-1">
+              <h4 className="font-bold text-white text-sm">4. Simulation: Lending Circle</h4>
+              <span className="text-wett-gold text-xs">15 min</span>
+            </div>
+            <p className="text-xs text-gray-300">Experience shared risk and trust-building</p>
+          </div>
+          <div className="bg-gray-700 p-3 rounded">
+            <div className="flex justify-between items-start mb-1">
+              <h4 className="font-bold text-white text-sm">5. Discussion: Trust and Barriers</h4>
+              <span className="text-wett-gold text-xs">10 min</span>
+            </div>
+            <p className="text-xs text-gray-300">What makes sharing resources hard? How to overcome?</p>
+          </div>
+          <div className="bg-gray-700 p-3 rounded">
+            <div className="flex justify-between items-start mb-1">
+              <h4 className="font-bold text-white text-sm">6. Case Study & Reflection</h4>
+              <span className="text-wett-gold text-xs">10 min</span>
+            </div>
+            <p className="text-xs text-gray-300">Success story: food co-op or investment club</p>
+          </div>
+          <div className="bg-gray-700 p-3 rounded">
+            <div className="flex justify-between items-start mb-1">
+              <h4 className="font-bold text-white text-sm">7. Wrap-Up & Assignment</h4>
+              <span className="text-wett-gold text-xs">10 min</span>
+            </div>
+            <p className="text-xs text-gray-300">Homework: Expand resource map, interview family member</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gray-800 p-6 rounded-lg mb-8">
+        <h2 className="text-2xl font-bold text-wett-gold mb-4">🎯 Hands-On Exercises</h2>
+        <div className="space-y-4">
+          <div className="bg-gray-700 p-4 rounded">
+            <h3 className="font-bold text-white mb-2">1. Community Resource Mapping</h3>
+            <p className="text-sm text-gray-300 mb-2">Draw your network: identify resource flows, informal economies, and support systems in your community.</p>
+            <button className="text-wett-gold text-sm hover:underline">Download Template →</button>
+          </div>
+          <div className="bg-gray-700 p-4 rounded">
+            <h3 className="font-bold text-white mb-2">2. Lending Circle Simulation</h3>
+            <p className="text-sm text-gray-300 mb-2">Experience shared risk and trust-building through group lending exercises.</p>
+            <button className="text-wett-gold text-sm hover:underline">Start Simulation →</button>
+          </div>
+          <div className="bg-gray-700 p-4 rounded">
+            <h3 className="font-bold text-white mb-2">3. Collaborative Budgeting Challenge</h3>
+            <p className="text-sm text-gray-300 mb-2">Negotiate and create shared budgets with your cohort ($1,000 community fund scenario).</p>
+            <button className="text-wett-gold text-sm hover:underline">View Challenge →</button>
+          </div>
+          <div className="bg-gray-700 p-4 rounded">
+            <h3 className="font-bold text-white mb-2">4. Build-a-Coop Case Study</h3>
+            <p className="text-sm text-gray-300 mb-2">Design a cooperative business: food co-op, artist collective, buying club, or investment group.</p>
+            <button className="text-wett-gold text-sm hover:underline">Access Framework →</button>
+          </div>
+          <div className="bg-gray-700 p-4 rounded">
+            <h3 className="font-bold text-white mb-2">5. Mutual Aid in Action</h3>
+            <p className="text-sm text-gray-300 mb-2">Weekly practice: give and receive non-monetary aid (skill share, meal swap, carpool, etc.).</p>
+            <button className="text-wett-gold text-sm hover:underline">Log Your Actions →</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gray-800 p-6 rounded-lg mb-8">
+        <h2 className="text-2xl font-bold text-wett-gold mb-4">📚 Required Reading & Media</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h3 className="font-bold text-white mb-3">Core Texts</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-700 p-3 rounded">
+                <p className="font-bold text-white text-sm">Collective Courage</p>
+                <p className="text-xs text-gray-400">Jessica Gordon Nembhard</p>
+              </div>
+              <div className="bg-gray-700 p-3 rounded">
+                <p className="font-bold text-white text-sm">The Art of Gathering</p>
+                <p className="text-xs text-gray-400">Priya Parker</p>
+              </div>
+              <div className="bg-gray-700 p-3 rounded">
+                <p className="font-bold text-white text-sm">Mutual Aid: A Factor of Evolution</p>
+                <p className="text-xs text-gray-400">Peter Kropotkin (public domain)</p>
+              </div>
+              <div className="bg-gray-700 p-3 rounded">
+                <p className="font-bold text-white text-sm">The Gift Economy</p>
+                <p className="text-xs text-gray-400">Lewis Hyde (selected chapters)</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 className="font-bold text-white mb-3">Articles & Documentaries</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-700 p-3 rounded">
+                <p className="font-bold text-white text-sm">&quot;The Case for Reparations&quot;</p>
+                <p className="text-xs text-gray-400">Ta-Nehisi Coates, The Atlantic</p>
+              </div>
+              <div className="bg-gray-700 p-3 rounded">
+                <p className="font-bold text-white text-sm">College Savings Circles</p>
+                <p className="text-xs text-gray-400">NPR, 2020</p>
+              </div>
+              <div className="bg-gray-700 p-3 rounded">
+                <p className="font-bold text-white text-sm">The Mondragon Corporation</p>
+                <p className="text-xs text-gray-400">DW Documentary (YouTube)</p>
+              </div>
+              <div className="bg-gray-700 p-3 rounded">
+                <p className="font-bold text-white text-sm">Modern U.S. Cooperatives</p>
+                <p className="text-xs text-gray-400">PBS NewsHour</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mt-4 bg-gray-700 p-4 rounded">
+          <h3 className="font-bold text-white mb-2">Podcasts</h3>
+          <div className="flex flex-wrap gap-3">
+            <span className="bg-gray-600 px-3 py-1 rounded text-sm text-white">The Table Underground</span>
+            <span className="bg-gray-600 px-3 py-1 rounded text-sm text-white">Pod Save the People</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="bg-gray-800 p-6 rounded-lg">
+          <h2 className="text-2xl font-bold text-wett-gold mb-4">📚 Additional Courses</h2>
+          <div className="space-y-4">
+            <div className="bg-gray-700 p-4 rounded">
+              <h3 className="font-bold text-white mb-2">The WETT Doctrine: Financial Strategy</h3>
+              <p className="text-sm text-gray-300 mb-2">Deep dive into the financial strategies that power the WETT empire.</p>
+              <span className="text-wett-gold text-sm">Duration: 6 Weeks</span>
+            </div>
+            <div className="bg-gray-700 p-4 rounded">
+              <h3 className="font-bold text-white mb-2">Pooled Resources & Investment</h3>
+              <p className="text-sm text-gray-300 mb-2">How to leverage collective capital for maximum returns.</p>
+              <span className="text-wett-gold text-sm">Duration: 5 Weeks</span>
+            </div>
+            <div className="bg-gray-700 p-4 rounded">
+              <h3 className="font-bold text-white mb-2">Village Banking Systems</h3>
+              <p className="text-sm text-gray-300 mb-2">Traditional and modern approaches to community finance.</p>
+              <span className="text-wett-gold text-sm">Duration: 4 Weeks</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gray-800 p-6 rounded-lg">
+          <h2 className="text-2xl font-bold text-wett-gold mb-4">📊 Financial Templates</h2>
+          <div className="space-y-3">
+            <a href="#" className="block bg-gray-700 p-4 rounded hover:bg-gray-600 transition">
+              <h3 className="font-bold text-white mb-1">Group Budget Planner</h3>
+              <p className="text-sm text-gray-300">Excel template for collective financial planning</p>
+            </a>
+            <a href="#" className="block bg-gray-700 p-4 rounded hover:bg-gray-600 transition">
+              <h3 className="font-bold text-white mb-1">Investment Pool Tracker</h3>
+              <p className="text-sm text-gray-300">Track contributions and returns for group investments</p>
+            </a>
+            <a href="#" className="block bg-gray-700 p-4 rounded hover:bg-gray-600 transition">
+              <h3 className="font-bold text-white mb-1">Revenue Sharing Calculator</h3>
+              <p className="text-sm text-gray-300">Calculate fair distribution of collective earnings</p>
+            </a>
+            <a href="#" className="block bg-gray-700 p-4 rounded hover:bg-gray-600 transition">
+              <h3 className="font-bold text-white mb-1">Business Plan Template</h3>
+              <p className="text-sm text-gray-300">Comprehensive template for group ventures</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gray-800 p-6 rounded-lg mb-8">
+        <h2 className="text-2xl font-bold text-wett-gold mb-4">🎓 Learning Path</h2>
+        <p className="text-sm text-gray-300 mb-4">Each week integrates: real-world case study → practical exercise → reflection → connection to your networks</p>
+        <div className="flex items-center gap-4 overflow-x-auto pb-4">
+          <div className="min-w-[200px] bg-wett-gold text-black p-4 rounded text-center">
+            <div className="font-bold mb-2">Week 1-4</div>
+            <div className="text-sm">Foundations</div>
+          </div>
+          <div className="text-wett-gold text-2xl">→</div>
+          <div className="min-w-[200px] bg-gray-700 p-4 rounded text-center">
+            <div className="font-bold mb-2">Week 5-10</div>
+            <div className="text-sm">Strategy</div>
+          </div>
+          <div className="text-wett-gold text-2xl">→</div>
+          <div className="min-w-[200px] bg-gray-700 p-4 rounded text-center">
+            <div className="font-bold mb-2">Week 11-16</div>
+            <div className="text-sm">Implementation</div>
+          </div>
+          <div className="text-wett-gold text-2xl">→</div>
+          <div className="min-w-[200px] bg-gray-700 p-4 rounded text-center">
+            <div className="font-bold mb-2">Week 17+</div>
+            <div className="text-sm">Mastery</div>
+          </div>
+        </div>
       </div>
     </div>
   );
