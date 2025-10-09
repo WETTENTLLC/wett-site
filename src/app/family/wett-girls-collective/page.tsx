@@ -140,7 +140,7 @@ export default function WettGirlsCollectivePage() {
             <div className="text-4xl mb-3 text-center">📝</div>
             <h3 className="font-bold text-white mb-2 text-center">Step 1: The Application – Declare Your Intent</h3>
             <p className="text-sm text-gray-300 text-center mb-4">This is your first act of commitment. Tell us your story and your vision.</p>
-            <a href="mailto:wettentertainmentllc@gmail.com?subject=WETT GIRL APPLICATION" className="block bg-wett-gold text-black px-4 py-2 rounded font-bold text-center hover:bg-yellow-400 transition">Apply Now</a>
+            <Link href="/family/wett-girls-collective/apply" className="block bg-wett-gold text-black px-4 py-2 rounded font-bold text-center hover:bg-yellow-400 transition">Apply Now</Link>
           </div>
           <div className="bg-gray-700 p-6 rounded">
             <div className="text-4xl mb-3 text-center">🎓</div>
