@@ -67,6 +67,7 @@ const NewsletterSignup = () => {
           {status === 'success' && <p className="mt-2 text-green-600">Successfully subscribed!</p>}
           {status === 'error' && <p className="mt-2 text-red-600">Failed to subscribe. Please wait a moment and try again.</p>}
         </form>
+        <p className="text-sm text-center mt-4">Want to support the mission? <a href="/collective/the-wett-collective" className="text-deep-black underline font-bold">Become a Collective member</a> (pay what you want)</p>
       </div>
     </div>
   );

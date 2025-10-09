@@ -1,40 +1,8 @@
-'use client'
-
-import { useState } from 'react'
-import PayPalButton from '@/components/PayPalButton'
+import PayWhatYouWant from '@/components/PayWhatYouWant'
 
 export default function GroupEconomicsPage() {
-  const [selectedPrice, setSelectedPrice] = useState<string | null>(null)
-  const [showPayment, setShowPayment] = useState(false)
-  const [paymentType, setPaymentType] = useState('full')
-  const [addDonation, setAddDonation] = useState(false)
-  const [isGroupRate, setIsGroupRate] = useState(false)
 
-  const calculateTotal = () => {
-    if (!selectedPrice) return '0'
-    let total = parseFloat(selectedPrice)
-    if (isGroupRate) total = total * 0.7
-    if (addDonation) total += 10
-    return total.toFixed(2)
-  }
 
-  const calculateMonthly = () => {
-    return (parseFloat(calculateTotal()) / 4).toFixed(2)
-  }
-
-  const handlePriceSelect = (price: string) => {
-    setSelectedPrice(price)
-    setShowPayment(true)
-  }
-
-  const handlePaymentSuccess = () => {
-    alert('Payment successful! Check your email for course access.')
-    setShowPayment(false)
-    setSelectedPrice(null)
-    setPaymentType('full')
-    setAddDonation(false)
-    setIsGroupRate(false)
-  }
 
   return (
     <div className="container mx-auto py-12 px-4">
@@ -85,92 +53,21 @@ export default function GroupEconomicsPage() {
         </div>
         
         <div className="bg-gray-900 p-6 rounded-lg mt-6">
-          <h3 className="text-xl font-bold text-wett-gold mb-4">💰 Fair Pay Structure - Choose What You Can Afford</h3>
-          <p className="text-gray-300 mb-4">We believe learning about group economics should be accessible. Choose a price that fits your situation. Every dollar above our minimum covers a scholarship for another learner—thank you for lifting up your community!</p>
+          <h3 className="text-xl font-bold text-wett-gold mb-4">💰 Pay What You Want - We Thrive Together</h3>
+          <p className="text-gray-300 mb-6">We believe learning about group economics should be accessible to everyone. Pay what you can afford. Those who pay more help subsidize those who pay less. This is group economics in action.</p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-gray-700 p-4 rounded border-2 border-gray-600">
-              <h4 className="font-bold text-white mb-2">Solidarity Price</h4>
-              <div className="text-3xl font-bold text-wett-gold mb-2">$10</div>
-              <p className="text-sm text-gray-300 mb-3">For those with limited means. No questions asked.</p>
-              <button onClick={() => handlePriceSelect('10')} className="w-full bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-500 transition">Select</button>
-            </div>
-            
-            <div className="bg-gray-700 p-4 rounded border-2 border-wett-gold">
-              <div className="text-xs text-wett-gold font-bold mb-1">MOST POPULAR</div>
-              <h4 className="font-bold text-white mb-2">Standard Price</h4>
-              <div className="text-3xl font-bold text-wett-gold mb-2">$50</div>
-              <p className="text-sm text-gray-300 mb-3">Covers course delivery and hosting costs.</p>
-              <button onClick={() => handlePriceSelect('50')} className="w-full bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition">Select</button>
-            </div>
-            
-            <div className="bg-gray-700 p-4 rounded border-2 border-gray-600">
-              <h4 className="font-bold text-white mb-2">Supporter Price</h4>
-              <div className="text-3xl font-bold text-wett-gold mb-2">$75</div>
-              <p className="text-sm text-gray-300 mb-3">Helps subsidize others. Thank you for giving back!</p>
-              <button onClick={() => handlePriceSelect('75')} className="w-full bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-500 transition">Select</button>
-            </div>
-          </div>
+          <PayWhatYouWant 
+            title="Group Economics Mastery Course"
+            description="Suggested: $10 (solidarity) | $50 (standard) | $100+ (supporter). Every contribution helps another learner."
+            suggestedAmounts={[10, 50, 100]}
+            minAmount={5}
+            onSuccess={() => alert('Enrolled! Check your email for course access.')}
+          />
           
-          {showPayment && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="bg-gray-700 p-4 rounded">
-                <h4 className="font-bold text-white mb-2">💳 Payment Options</h4>
-                <div className="space-y-2 text-sm text-gray-300">
-                  <label className="flex items-center gap-2">
-                    <input type="radio" name="payment" checked={paymentType === 'full'} onChange={() => setPaymentType('full')} />
-                    <span>Pay in Full</span>
-                  </label>
-                  <label className="flex items-center gap-2">
-                    <input type="radio" name="payment" checked={paymentType === 'monthly'} onChange={() => setPaymentType('monthly')} />
-                    <span>4 Monthly Payments (${calculateMonthly()}/mo, no interest)</span>
-                  </label>
-                </div>
-              </div>
-              
-              <div className="bg-gray-700 p-4 rounded">
-                <h4 className="font-bold text-white mb-2">🤝 Additional Options</h4>
-                <div className="space-y-2 text-sm text-gray-300">
-                  <label className="flex items-center gap-2">
-                    <input type="checkbox" checked={addDonation} onChange={(e) => setAddDonation(e.target.checked)} />
-                    <span>Add $10 donation to scholarship fund</span>
-                  </label>
-                  <label className="flex items-center gap-2">
-                    <input type="checkbox" checked={isGroupRate} onChange={(e) => setIsGroupRate(e.target.checked)} />
-                    <span>Group rate (5+ people, 30% off each)</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          )}
-          
-          <div className="bg-gray-800 p-4 rounded text-center">
-            <p className="text-sm text-gray-400 mb-2">Need full scholarship? <a href="#" className="text-wett-gold hover:underline">Apply here</a> (simple form, no proof required)</p>
+          <div className="bg-gray-800 p-4 rounded text-center mt-4">
+            <p className="text-sm text-gray-400 mb-2">Need full scholarship? <a href="mailto:wettentertainmentllc@gmail.com?subject=Scholarship Request" className="text-wett-gold hover:underline">Email us</a> (no proof required)</p>
             <p className="text-xs text-gray-500">🎓 23 scholarships funded this month by our community</p>
           </div>
-
-          {showPayment && selectedPrice && (
-            <div className="bg-gray-700 p-6 rounded-lg mt-6 border-2 border-wett-gold">
-              <div className="flex justify-between items-center mb-4">
-                <div>
-                  <h4 className="font-bold text-white text-xl">Complete Payment</h4>
-                  <div className="text-sm text-gray-300 mt-1">
-                    {paymentType === 'full' ? (
-                      <span>Total: <span className="text-wett-gold font-bold">${calculateTotal()}</span></span>
-                    ) : (
-                      <span>First payment: <span className="text-wett-gold font-bold">${calculateMonthly()}</span> (4 months)</span>
-                    )}
-                  </div>
-                </div>
-                <button onClick={() => setShowPayment(false)} className="text-gray-400 hover:text-white text-2xl">✕</button>
-              </div>
-              <PayPalButton 
-                amount={paymentType === 'full' ? calculateTotal() : calculateMonthly()} 
-                description={`Group Economics Mastery Course${paymentType === 'monthly' ? ' - First Payment' : ''}${addDonation ? ' + $10 Donation' : ''}${isGroupRate ? ' (Group Rate)' : ''}`}
-                onSuccess={handlePaymentSuccess}
-              />
-            </div>
-          )}
         </div>
       </div>
 

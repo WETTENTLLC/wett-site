@@ -7,6 +7,7 @@ import Providers from '@/components/Providers';
 import AuraChatWidget from '@/components/AuraChatWidget';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import PayPalProvider from '@/components/PayPalProvider';
+import PayWhatYouWantBanner from '@/components/PayWhatYouWantBanner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         <ErrorBoundary>
           <PayPalProvider>
             <Providers>
+              <PayWhatYouWantBanner />
               <Header />
               <main>{children}</main>
               <Footer />

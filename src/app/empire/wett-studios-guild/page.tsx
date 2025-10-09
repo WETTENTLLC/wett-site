@@ -1,3 +1,5 @@
+import PayWhatYouWant from '@/components/PayWhatYouWant'
+
 export default function WettStudiosGuild() {
   return (
     <div className="container mx-auto py-12 px-4">
@@ -95,23 +97,25 @@ export default function WettStudiosGuild() {
       </div>
 
       <div className="bg-gray-800 p-8 rounded-lg mb-8">
-        <h2 className="text-2xl font-bold text-wett-gold mb-6">Pricing</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gray-700 p-6 rounded text-center">
-            <h3 className="font-bold text-white mb-2">Drop-In</h3>
-            <div className="text-4xl font-bold text-wett-gold mb-4">$20</div>
-            <p className="text-sm text-gray-300">Single class access</p>
-          </div>
-          <div className="bg-gray-700 p-6 rounded text-center border-2 border-wett-gold">
-            <h3 className="font-bold text-wett-gold mb-2">Monthly Unlimited</h3>
-            <div className="text-4xl font-bold text-wett-gold mb-4">$150</div>
-            <p className="text-sm text-gray-300">All classes, unlimited access</p>
-          </div>
-          <div className="bg-gray-700 p-6 rounded text-center">
-            <h3 className="font-bold text-white mb-2">10-Class Pack</h3>
-            <div className="text-4xl font-bold text-wett-gold mb-4">$150</div>
-            <p className="text-sm text-gray-300">Use within 3 months</p>
-          </div>
+        <h2 className="text-2xl font-bold text-wett-gold mb-6">Pay What You Want - Access for All</h2>
+        <p className="text-gray-300 mb-6">We believe fitness and education should be accessible. Pay what you can afford for classes and workshops.</p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <PayWhatYouWant 
+            title="Single Class Drop-In"
+            description="Suggested: $15-$25 per class. Pay what works for you."
+            suggestedAmounts={[10, 20, 30]}
+            minAmount={5}
+            onSuccess={() => alert('Class booked! See you soon.')}
+          />
+          
+          <PayWhatYouWant 
+            title="Monthly Unlimited Access"
+            description="Suggested: $100-$200/month for unlimited classes. All fitness and workshops included."
+            suggestedAmounts={[75, 150, 250]}
+            minAmount={50}
+            onSuccess={() => alert('Monthly membership activated! Welcome to the family.')}
+          />
         </div>
       </div>
 
