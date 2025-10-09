@@ -6,6 +6,21 @@ import PayPalButton from '@/components/PayPalButton'
 export default function GroupEconomicsPage() {
   const [selectedPrice, setSelectedPrice] = useState<string | null>(null)
   const [showPayment, setShowPayment] = useState(false)
+  const [paymentType, setPaymentType] = useState('full')
+  const [addDonation, setAddDonation] = useState(false)
+  const [isGroupRate, setIsGroupRate] = useState(false)
+
+  const calculateTotal = () => {
+    if (!selectedPrice) return '0'
+    let total = parseFloat(selectedPrice)
+    if (isGroupRate) total = total * 0.7
+    if (addDonation) total += 10
+    return total.toFixed(2)
+  }
+
+  const calculateMonthly = () => {
+    return (parseFloat(calculateTotal()) / 4).toFixed(2)
+  }
 
   const handlePriceSelect = (price: string) => {
     setSelectedPrice(price)
@@ -16,6 +31,9 @@ export default function GroupEconomicsPage() {
     alert('Payment successful! Check your email for course access.')
     setShowPayment(false)
     setSelectedPrice(null)
+    setPaymentType('full')
+    setAddDonation(false)
+    setIsGroupRate(false)
   }
 
   return (
@@ -94,35 +112,37 @@ export default function GroupEconomicsPage() {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div className="bg-gray-700 p-4 rounded">
-              <h4 className="font-bold text-white mb-2">💳 Payment Options</h4>
-              <div className="space-y-2 text-sm text-gray-300">
-                <label className="flex items-center gap-2">
-                  <input type="radio" name="payment" className="text-wett-gold" defaultChecked />
-                  <span>Pay in Full</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="radio" name="payment" className="text-wett-gold" />
-                  <span>4 Monthly Payments (no interest)</span>
-                </label>
+          {showPayment && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="bg-gray-700 p-4 rounded">
+                <h4 className="font-bold text-white mb-2">💳 Payment Options</h4>
+                <div className="space-y-2 text-sm text-gray-300">
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="payment" checked={paymentType === 'full'} onChange={() => setPaymentType('full')} />
+                    <span>Pay in Full</span>
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="payment" checked={paymentType === 'monthly'} onChange={() => setPaymentType('monthly')} />
+                    <span>4 Monthly Payments (${calculateMonthly()}/mo, no interest)</span>
+                  </label>
+                </div>
+              </div>
+              
+              <div className="bg-gray-700 p-4 rounded">
+                <h4 className="font-bold text-white mb-2">🤝 Additional Options</h4>
+                <div className="space-y-2 text-sm text-gray-300">
+                  <label className="flex items-center gap-2">
+                    <input type="checkbox" checked={addDonation} onChange={(e) => setAddDonation(e.target.checked)} />
+                    <span>Add $10 donation to scholarship fund</span>
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="checkbox" checked={isGroupRate} onChange={(e) => setIsGroupRate(e.target.checked)} />
+                    <span>Group rate (5+ people, 30% off each)</span>
+                  </label>
+                </div>
               </div>
             </div>
-            
-            <div className="bg-gray-700 p-4 rounded">
-              <h4 className="font-bold text-white mb-2">🤝 Additional Options</h4>
-              <div className="space-y-2 text-sm text-gray-300">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="text-wett-gold" />
-                  <span>Add $10 donation to scholarship fund</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="text-wett-gold" />
-                  <span>Group rate (5+ people, 30% off each)</span>
-                </label>
-              </div>
-            </div>
-          </div>
+          )}
           
           <div className="bg-gray-800 p-4 rounded text-center">
             <p className="text-sm text-gray-400 mb-2">Need full scholarship? <a href="#" className="text-wett-gold hover:underline">Apply here</a> (simple form, no proof required)</p>
@@ -132,12 +152,21 @@ export default function GroupEconomicsPage() {
           {showPayment && selectedPrice && (
             <div className="bg-gray-700 p-6 rounded-lg mt-6 border-2 border-wett-gold">
               <div className="flex justify-between items-center mb-4">
-                <h4 className="font-bold text-white text-xl">Complete Payment - ${selectedPrice}</h4>
+                <div>
+                  <h4 className="font-bold text-white text-xl">Complete Payment</h4>
+                  <div className="text-sm text-gray-300 mt-1">
+                    {paymentType === 'full' ? (
+                      <span>Total: <span className="text-wett-gold font-bold">${calculateTotal()}</span></span>
+                    ) : (
+                      <span>First payment: <span className="text-wett-gold font-bold">${calculateMonthly()}</span> (4 months)</span>
+                    )}
+                  </div>
+                </div>
                 <button onClick={() => setShowPayment(false)} className="text-gray-400 hover:text-white text-2xl">✕</button>
               </div>
               <PayPalButton 
-                amount={selectedPrice} 
-                description="Group Economics Mastery Course" 
+                amount={paymentType === 'full' ? calculateTotal() : calculateMonthly()} 
+                description={`Group Economics Mastery Course${paymentType === 'monthly' ? ' - First Payment' : ''}${addDonation ? ' + $10 Donation' : ''}${isGroupRate ? ' (Group Rate)' : ''}`}
                 onSuccess={handlePaymentSuccess}
               />
             </div>
