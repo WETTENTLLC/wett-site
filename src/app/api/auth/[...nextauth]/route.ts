@@ -11,15 +11,20 @@ const handler = NextAuth({
         password: {  label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        // This is where you would add your user authentication logic.
-        // For now, we'll just accept any user.
-        if (credentials) {
-          return { id: "1", name: "Test User", email: credentials.email }
+        // Test user: demo@wett.com / password123
+        if (credentials?.email === "demo@wett.com" && credentials?.password === "password123") {
+          return { id: "1", name: "WETT Member", email: "demo@wett.com" }
         }
         return null
       }
     })
-  ]
+  ],
+  pages: {
+    signIn: '/login',
+  },
+  session: {
+    strategy: "jwt"
+  }
 })
 
 export { handler as GET, handler as POST }
