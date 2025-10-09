@@ -1,23 +1,13 @@
-'use client'
-
-import { useState } from 'react'
-import PayPalButton from '@/components/PayPalButton'
+import PayWhatYouWant from '@/components/PayWhatYouWant'
 
 export default function WettLifestyleFlagship() {
-  const [showDonation, setShowDonation] = useState(false)
-  const [donationAmount, setDonationAmount] = useState('')
-  const [donationType, setDonationType] = useState<'one-time' | 'monthly'>('one-time')
 
   const goal = 500000
   const raised = 45000
   const percentage = (raised / goal) * 100
   const contributors = 127
 
-  const handleDonationSuccess = () => {
-    alert('Thank you for investing in the WETT Lifestyle Flagship! You\'ll receive updates on our progress.')
-    setShowDonation(false)
-    setDonationAmount('')
-  }
+
 
   return (
     <div className="container mx-auto py-12 px-4">
@@ -59,66 +49,13 @@ export default function WettLifestyleFlagship() {
         </div>
 
         <div className="text-center mb-6">
-          {!showDonation ? (
-            <div>
-              <button onClick={() => setShowDonation(true)} className="bg-wett-gold text-black px-10 py-4 rounded-lg font-bold text-xl hover:bg-yellow-400 transition shadow-lg">
-                Invest in the Flagship
-              </button>
-              <p className="text-sm text-gray-400 mt-3">All contributors receive exclusive updates and early access benefits</p>
-            </div>
-          ) : (
-            <div className="bg-gray-700 p-6 rounded-lg max-w-lg mx-auto border-2 border-wett-gold">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="font-bold text-white text-xl">Invest in the Vision</h3>
-                <button onClick={() => setShowDonation(false)} className="text-gray-400 hover:text-white text-2xl">×</button>
-              </div>
-              
-              <div className="mb-4">
-                <div className="flex gap-2 mb-4">
-                  <button onClick={() => setDonationType('one-time')} className={`flex-1 py-2 rounded ${donationType === 'one-time' ? 'bg-wett-gold text-black' : 'bg-gray-600 text-white'}`}>One-Time</button>
-                  <button onClick={() => setDonationType('monthly')} className={`flex-1 py-2 rounded ${donationType === 'monthly' ? 'bg-wett-gold text-black' : 'bg-gray-600 text-white'}`}>Monthly</button>
-                </div>
-                
-                <div className="grid grid-cols-3 gap-2 mb-4">
-                  <button onClick={() => setDonationAmount('25')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$25</button>
-                  <button onClick={() => setDonationAmount('100')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$100</button>
-                  <button onClick={() => setDonationAmount('500')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$500</button>
-                </div>
-                
-                <input 
-                  type="number" 
-                  value={donationAmount} 
-                  onChange={(e) => setDonationAmount(e.target.value)}
-                  placeholder="Or enter custom amount"
-                  className="w-full bg-gray-600 text-white p-3 rounded mb-2"
-                  min="1"
-                />
-                <p className="text-xs text-gray-400">Suggested: $100 (brings us 0.02% closer to goal)</p>
-              </div>
-              
-              {donationAmount && parseFloat(donationAmount) > 0 && (
-                <div>
-                  <div className="bg-gray-800 p-3 rounded mb-3 text-sm">
-                    <div className="flex justify-between mb-1">
-                      <span className="text-gray-400">Your contribution:</span>
-                      <span className="text-white font-bold">${donationAmount}{donationType === 'monthly' ? '/mo' : ''}</span>
-                    </div>
-                    {donationType === 'monthly' && (
-                      <div className="flex justify-between text-xs text-gray-500">
-                        <span>Annual impact:</span>
-                        <span>${(parseFloat(donationAmount) * 12).toFixed(2)}</span>
-                      </div>
-                    )}
-                  </div>
-                  <PayPalButton 
-                    amount={donationAmount}
-                    description={`WETT Lifestyle Flagship ${donationType === 'monthly' ? 'Monthly ' : ''}Investment`}
-                    onSuccess={handleDonationSuccess}
-                  />
-                </div>
-              )}
-            </div>
-          )}
+          <PayWhatYouWant 
+            title="Invest in the Flagship"
+            description="Suggested: $25 (supporter) | $100 (investor) | $500+ (major investor). All contributors get exclusive updates and early access."
+            suggestedAmounts={[25, 100, 500]}
+            minAmount={10}
+            onSuccess={() => alert('Thank you for investing in the WETT Lifestyle Flagship! You\'ll receive updates on our progress.')}
+          />
         </div>
       </div>
 

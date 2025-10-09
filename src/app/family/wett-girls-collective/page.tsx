@@ -1,26 +1,18 @@
 'use client'
 
-import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
-import PayPalButton from '@/components/PayPalButton'
+import PayWhatYouWant from '@/components/PayWhatYouWant'
 
 export default function WettGirlsCollectivePage() {
   const { data: session } = useSession()
-  const [showTides, setShowTides] = useState(false)
-  const [tidesAmount, setTidesAmount] = useState('')
-  const [tidesFrequency, setTidesFrequency] = useState<'daily' | 'weekly' | 'monthly'>('weekly')
 
   const groupGoal = 10000
   const currentProgress = 3450
   const percentage = (currentProgress / groupGoal) * 100
   const activeGirls = 23
 
-  const handleTidesSuccess = () => {
-    alert('WETT TIDES contribution received! Thank you for building the empire.')
-    setShowTides(false)
-    setTidesAmount('')
-  }
+
 
   return (
     <div className="container mx-auto py-12 px-4">
@@ -86,68 +78,16 @@ export default function WettGirlsCollectivePage() {
 
         {session ? (
           <div className="text-center">
-            {!showTides ? (
-              <button onClick={() => setShowTides(true)} className="bg-wett-gold text-black px-10 py-4 rounded-lg font-bold text-xl hover:bg-yellow-400 transition shadow-lg">
-                Make WETT TIDES Contribution
-              </button>
-            ) : (
-              <div className="bg-gray-700 p-6 rounded-lg max-w-lg mx-auto border-2 border-wett-gold">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="font-bold text-white text-xl">WETT TIDES Contribution</h3>
-                  <button onClick={() => setShowTides(false)} className="text-gray-400 hover:text-white text-2xl">×</button>
-                </div>
-                
-                <div className="mb-4">
-                  <label className="block text-white mb-2">Contribution Frequency</label>
-                  <div className="grid grid-cols-3 gap-2 mb-4">
-                    <button onClick={() => setTidesFrequency('daily')} className={`py-2 rounded ${tidesFrequency === 'daily' ? 'bg-wett-gold text-black' : 'bg-gray-600 text-white'}`}>Daily</button>
-                    <button onClick={() => setTidesFrequency('weekly')} className={`py-2 rounded ${tidesFrequency === 'weekly' ? 'bg-wett-gold text-black' : 'bg-gray-600 text-white'}`}>Weekly</button>
-                    <button onClick={() => setTidesFrequency('monthly')} className={`py-2 rounded ${tidesFrequency === 'monthly' ? 'bg-wett-gold text-black' : 'bg-gray-600 text-white'}`}>Monthly</button>
-                  </div>
-                  
-                  <label className="block text-white mb-2">Amount</label>
-                  <div className="grid grid-cols-4 gap-2 mb-4">
-                    <button onClick={() => setTidesAmount('10')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$10</button>
-                    <button onClick={() => setTidesAmount('25')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$25</button>
-                    <button onClick={() => setTidesAmount('50')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$50</button>
-                    <button onClick={() => setTidesAmount('100')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$100</button>
-                  </div>
-                  
-                  <input 
-                    type="number" 
-                    value={tidesAmount} 
-                    onChange={(e) => setTidesAmount(e.target.value)}
-                    placeholder="Or enter custom amount"
-                    className="w-full bg-gray-600 text-white p-3 rounded mb-2"
-                    min="1"
-                  />
-                  
-                  {tidesAmount && parseFloat(tidesAmount) > 0 && (
-                    <div className="bg-gray-800 p-3 rounded mb-3 text-sm">
-                      <div className="flex justify-between mb-1">
-                        <span className="text-gray-400">Your {tidesFrequency} contribution:</span>
-                        <span className="text-white font-bold">${tidesAmount}</span>
-                      </div>
-                      <div className="flex justify-between text-xs text-gray-500">
-                        <span>Annual impact:</span>
-                        <span>${(parseFloat(tidesAmount) * (tidesFrequency === 'daily' ? 365 : tidesFrequency === 'weekly' ? 52 : 12)).toFixed(2)}</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                
-                {tidesAmount && parseFloat(tidesAmount) > 0 && (
-                  <PayPalButton 
-                    amount={tidesAmount}
-                    description={`WETT TIDES - ${tidesFrequency} contribution`}
-                    onSuccess={handleTidesSuccess}
-                  />
-                )}
-              </div>
-            )}
+            <PayWhatYouWant 
+              title="WETT TIDES Contribution"
+              description="Daily: $10-$25 | Weekly: $25-$100 | Monthly: $50-$200. Set your own contribution amount."
+              suggestedAmounts={[10, 50, 100]}
+              minAmount={5}
+              onSuccess={() => alert('WETT TIDES contribution received! Thank you for building the empire.')}
+            />
           </div>
         ) : (
-          <div className="text-center bg-gray-700 p-6 rounded">
+          <div className="text-center bg-gray-700 p-6 rounded border-2 border-wett-gold">
             <p className="text-gray-300 mb-4">Login to make WETT TIDES contributions</p>
             <Link href="/login" className="bg-wett-gold text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition inline-block">Sign In</Link>
           </div>

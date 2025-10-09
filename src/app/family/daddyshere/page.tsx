@@ -1,17 +1,6 @@
-'use client'
-
-import { useState } from 'react'
-import PayPalButton from '@/components/PayPalButton'
+import PayWhatYouWant from '@/components/PayWhatYouWant'
 
 export default function DaddysherePage() {
-  const [showDonation, setShowDonation] = useState(false)
-  const [donationAmount, setDonationAmount] = useState('')
-
-  const handleDonationSuccess = () => {
-    alert('Thank you for supporting fathers! Your donation will provide comfort to dads at hospitals.')
-    setShowDonation(false)
-    setDonationAmount('')
-  }
 
   return (
     <div className="container mx-auto py-12 px-4">
@@ -86,41 +75,13 @@ export default function DaddysherePage() {
         <p className="text-lg text-gray-300 mb-6 text-center">Your donation provides comfort and support to fathers during childbirth. Every dollar helps us serve more families.</p>
         
         <div className="text-center mb-6">
-          {!showDonation ? (
-            <button onClick={() => setShowDonation(true)} className="bg-wett-gold text-black px-10 py-4 rounded-lg font-bold text-xl hover:bg-yellow-400 transition shadow-lg">
-              Donate to Daddy&apos;s Here
-            </button>
-          ) : (
-            <div className="bg-gray-700 p-6 rounded-lg max-w-lg mx-auto">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="font-bold text-white text-xl">Make a Difference</h3>
-                <button onClick={() => setShowDonation(false)} className="text-gray-400 hover:text-white text-2xl">×</button>
-              </div>
-              
-              <div className="grid grid-cols-3 gap-2 mb-4">
-                <button onClick={() => setDonationAmount('25')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$25</button>
-                <button onClick={() => setDonationAmount('50')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$50</button>
-                <button onClick={() => setDonationAmount('100')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$100</button>
-              </div>
-              
-              <input 
-                type="number" 
-                value={donationAmount} 
-                onChange={(e) => setDonationAmount(e.target.value)}
-                placeholder="Or enter custom amount"
-                className="w-full bg-gray-600 text-white p-3 rounded mb-4"
-                min="1"
-              />
-              
-              {donationAmount && parseFloat(donationAmount) > 0 && (
-                <PayPalButton 
-                  amount={donationAmount}
-                  description="Daddy's Here - Hospital Support Program"
-                  onSuccess={handleDonationSuccess}
-                />
-              )}
-            </div>
-          )}
+          <PayWhatYouWant 
+            title="Support Daddy's Here"
+            description="$25 feeds 1 father | $50 provides 1 comfort package | $100 provides 1 inflatable bed. Every dollar helps."
+            suggestedAmounts={[25, 50, 100]}
+            minAmount={5}
+            onSuccess={() => alert('Thank you for supporting fathers! Your donation will provide comfort to dads at hospitals.')}
+          />
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center text-sm">

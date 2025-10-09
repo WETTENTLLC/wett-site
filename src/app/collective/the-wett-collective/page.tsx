@@ -1,7 +1,4 @@
-'use client'
-
-import { useState } from 'react'
-import PayPalButton from '@/components/PayPalButton'
+import PayWhatYouWant from '@/components/PayWhatYouWant'
 
 const investmentOpportunities = [
   { title: 'Upcoming Show - Oakland', type: 'Event', investment: '$500 - $5,000', roi: '15-25% return', timeline: '30 days' },
@@ -11,15 +8,6 @@ const investmentOpportunities = [
 ];
 
 export default function TheWettCollectivePage() {
-  const [showMembership, setShowMembership] = useState(false)
-  const [membershipAmount, setMembershipAmount] = useState('')
-  const [membershipType, setMembershipType] = useState<'basic' | 'village-leader'>('basic')
-
-  const handleMembershipSuccess = () => {
-    alert('Welcome to The WETT Collective! Check your email for exclusive access and investment opportunities.')
-    setShowMembership(false)
-    setMembershipAmount('')
-  }
   return (
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
@@ -33,69 +21,13 @@ export default function TheWettCollectivePage() {
           <h2 className="text-3xl font-semibold text-wett-gold mb-6 text-center">Join The Collective</h2>
           <p className="text-lg text-gray-300 mb-6 text-center">Pay what you want to support our vision and get access to exclusive investment opportunities, newsletters, and updates.</p>
           
-          {!showMembership ? (
-            <div className="text-center">
-              <button onClick={() => setShowMembership(true)} className="bg-wett-gold text-black px-10 py-4 rounded-lg font-bold text-xl hover:bg-yellow-400 transition shadow-lg">
-                Become a Member
-              </button>
-            </div>
-          ) : (
-            <div className="bg-gray-700 p-6 rounded-lg max-w-2xl mx-auto">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="font-bold text-white text-xl">Choose Your Membership</h3>
-                <button onClick={() => setShowMembership(false)} className="text-gray-400 hover:text-white text-2xl">×</button>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div onClick={() => setMembershipType('basic')} className={`p-6 rounded cursor-pointer border-2 ${membershipType === 'basic' ? 'border-wett-gold bg-gray-600' : 'border-gray-600 bg-gray-800'}`}>
-                  <h4 className="font-bold text-white mb-2">Basic Supporter</h4>
-                  <p className="text-sm text-gray-300 mb-3">Pay what you want to support the vision</p>
-                  <ul className="text-xs text-gray-400 space-y-1">
-                    <li>✓ Monthly newsletters</li>
-                    <li>✓ Investment updates</li>
-                    <li>✓ Community access</li>
-                  </ul>
-                </div>
-                <div onClick={() => setMembershipType('village-leader')} className={`p-6 rounded cursor-pointer border-2 ${membershipType === 'village-leader' ? 'border-wett-gold bg-gray-600' : 'border-gray-600 bg-gray-800'}`}>
-                  <h4 className="font-bold text-wett-gold mb-2">Village Leader</h4>
-                  <p className="text-sm text-gray-300 mb-3">Higher contribution for greater impact</p>
-                  <ul className="text-xs text-gray-400 space-y-1">
-                    <li>✓ All Basic benefits</li>
-                    <li>✓ Priority investment opportunities</li>
-                    <li>✓ Quarterly strategy calls</li>
-                    <li>✓ Early access to events</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className="mb-4">
-                <label className="block text-white mb-2">Your Contribution (Pay What You Want)</label>
-                <div className="grid grid-cols-4 gap-2 mb-4">
-                  <button onClick={() => setMembershipAmount('10')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$10</button>
-                  <button onClick={() => setMembershipAmount('25')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$25</button>
-                  <button onClick={() => setMembershipAmount('50')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$50</button>
-                  <button onClick={() => setMembershipAmount('100')} className="bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">$100</button>
-                </div>
-                <input 
-                  type="number" 
-                  value={membershipAmount} 
-                  onChange={(e) => setMembershipAmount(e.target.value)}
-                  placeholder="Or enter any amount"
-                  className="w-full bg-gray-600 text-white p-3 rounded mb-2"
-                  min="1"
-                />
-                <p className="text-xs text-gray-400">Suggested: $25/month for Basic, $100/month for Village Leader</p>
-              </div>
-              
-              {membershipAmount && parseFloat(membershipAmount) > 0 && (
-                <PayPalButton 
-                  amount={membershipAmount}
-                  description={`WETT Collective - ${membershipType === 'village-leader' ? 'Village Leader' : 'Basic'} Membership`}
-                  onSuccess={handleMembershipSuccess}
-                />
-              )}
-            </div>
-          )}
+          <PayWhatYouWant 
+            title="WETT Collective Membership"
+            description="Basic Supporter: $10-$50 (newsletters, updates, community) | Village Leader: $100+ (priority investments, strategy calls, early access)"
+            suggestedAmounts={[25, 50, 100]}
+            minAmount={5}
+            onSuccess={() => alert('Welcome to The WETT Collective! Check your email for exclusive access.')}
+          />
         </div>
 
         <div className="bg-gray-800 p-8 rounded-lg mb-12">
