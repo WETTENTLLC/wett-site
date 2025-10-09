@@ -88,17 +88,16 @@ export default function WettGirlsCollectivePage() {
           </div>
         </div>
 
-        {session ? (
-          <div className="text-center">
-            <PayWhatYouWant 
-              title="WETT TIDES Contribution"
-              description="Daily: $10-$25 | Weekly: $25-$100 | Monthly: $50-$200. Set your own contribution amount."
-              suggestedAmounts={[10, 50, 100]}
-              minAmount={5}
-              onSuccess={() => alert('WETT TIDES contribution received! Thank you for building the empire.')}
-            />
-          </div>
-        ) : (
+        <div className="text-center">
+          <PayWhatYouWant 
+            title="WETT TIDES Contribution"
+            description="Daily: $10-$25 | Weekly: $25-$100 | Monthly: $50-$200. Set your own contribution amount."
+            suggestedAmounts={[10, 50, 100]}
+            minAmount={5}
+            onSuccess={() => alert('WETT TIDES contribution received! Thank you for building the empire.')}
+          />
+        </div>
+        {!session && (
           <div className="text-center bg-gray-700 p-6 rounded border-2 border-wett-gold">
             <p className="text-gray-300 mb-4">Login to make WETT TIDES contributions</p>
             <Link href="/login" className="bg-wett-gold text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition inline-block">Sign In</Link>
