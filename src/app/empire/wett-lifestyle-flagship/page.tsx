@@ -153,7 +153,7 @@ export default function WettLifestyleFlagship() {
         <p className="text-xl text-gray-300 mb-6 max-w-3xl mx-auto">It&apos;s the physical embodiment of &quot;We Thrive Together.&quot; A place where the WETT family can gather, create, learn, and build. Where group economics becomes tangible. Where the empire has a home.</p>
         <p className="text-2xl text-wett-gold italic mb-8">&quot;The Final Destination - Where We All Eat&quot;</p>
         <div className="flex gap-4 justify-center flex-wrap">
-          <button onClick={() => setShowDonation(true)} className="bg-wett-gold text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition">Invest Now</button>
+          <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="bg-wett-gold text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition">Invest Now</a>
           <a href="/collective" className="border-2 border-wett-gold text-wett-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-wett-gold hover:text-black transition">Join The Collective</a>
         </div>
       </div>
