@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useAuth } from '@/lib/AuthContext';
+import { useRouter } from 'next/navigation';
 
 const navigationItems = [
   { href: '/empire', label: 'The Empire' },
@@ -14,7 +15,8 @@ const navigationItems = [
 ];
 
 const Header = () => {
-  const { data: session } = useSession();
+  const { user, logout } = useAuth();
+  const router = useRouter();
 
   return (
     <header className="bg-deep-black text-clean-white p-4">
@@ -28,19 +30,19 @@ const Header = () => {
               {item.label}
             </Link>
           ))}
-           {session ? (
+           {user ? (
             <>
               <Link href="/profile" className="p-2">
                 Profile
               </Link>
-              <button onClick={() => signOut()} className="p-2">
+              <button onClick={() => { logout(); router.push('/'); }} className="p-2">
                 Sign Out
               </button>
             </>
           ) : (
-            <button onClick={() => signIn()} className="p-2">
+            <Link href="/login" className="p-2">
               Sign In
-            </button>
+            </Link>
           )}
         </div>
       </nav>

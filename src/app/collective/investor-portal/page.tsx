@@ -1,7 +1,8 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
-import { redirect } from 'next/navigation'
+import { useAuth } from '@/lib/AuthContext'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 // Dummy data for demonstration
 const investorData = {
@@ -22,15 +23,17 @@ const investorData = {
 };
 
 export default function InvestorPortalPage() {
-  const { status } = useSession();
+  const { user } = useAuth();
+  const router = useRouter();
 
-  if (status === 'loading') {
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user, router]);
+
+  if (!user) {
     return <p className="text-center py-12">Loading...</p>;
-  }
-
-  // For a real application, you would also check for a specific investor role.
-  if (status === 'unauthenticated') {
-    redirect('/login?callbackUrl=/collective/investor-portal');
   }
 
   return (

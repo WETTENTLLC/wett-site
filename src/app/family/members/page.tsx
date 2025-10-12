@@ -1,11 +1,11 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
+import { useAuth } from '@/lib/AuthContext'
 import { useState } from 'react'
 import Link from 'next/link'
 
 export default function MembersPage() {
-  const { data: session } = useSession()
+  const { user } = useAuth()
   const [showNewPost, setShowNewPost] = useState(false)
   const [selectedForum, setSelectedForum] = useState('')
   const [postTitle, setPostTitle] = useState('')
@@ -27,7 +27,7 @@ export default function MembersPage() {
           <h1 className="text-4xl font-bold text-wett-gold mb-2">Community Forums & Member Directory</h1>
           <p className="text-lg text-gray-300">Connect with other WETT family members and build together.</p>
         </div>
-        {session ? (
+        {user ? (
           <button onClick={() => setShowNewPost(true)} className="bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">
             + New Post
           </button>
@@ -106,7 +106,7 @@ export default function MembersPage() {
         <div className="lg:col-span-2">
           <div className="bg-gray-800 p-6 rounded-lg mb-8">
             <h2 className="text-2xl font-bold text-wett-gold mb-4">💬 Community Forums</h2>
-            {!session && (
+            {!user && (
               <div className="bg-gray-700 p-4 rounded mb-4 text-center">
                 <p className="text-gray-300 mb-2">Login to view full discussions and post</p>
                 <Link href="/login" className="text-wett-gold hover:underline">Sign in now →</Link>
@@ -119,7 +119,7 @@ export default function MembersPage() {
                   <span className="text-sm text-wett-gold">234 posts</span>
                 </div>
                 <p className="text-sm text-gray-300 mb-2">Talk about anything WETT related</p>
-                {session && (
+                {user && (
                   <div className="text-xs text-gray-400">
                     <span>Latest: &quot;New member intro&quot; by Marcus J. - 2h ago</span>
                   </div>
@@ -131,7 +131,7 @@ export default function MembersPage() {
                   <span className="text-sm text-wett-gold">189 posts</span>
                 </div>
                 <p className="text-sm text-gray-300 mb-2">Share business ideas and get feedback</p>
-                {session && (
+                {user && (
                   <div className="text-xs text-gray-400">
                     <span>Latest: &quot;Scaling my consulting biz&quot; by Sarah M. - 5h ago</span>
                   </div>
@@ -143,7 +143,7 @@ export default function MembersPage() {
                   <span className="text-sm text-wett-gold">156 posts</span>
                 </div>
                 <p className="text-sm text-gray-300 mb-2">Discuss collective wealth building strategies</p>
-                {session && (
+                {user && (
                   <div className="text-xs text-gray-400">
                     <span>Latest: &quot;Investment pool update&quot; by Alex R. - 1d ago</span>
                   </div>
@@ -155,7 +155,7 @@ export default function MembersPage() {
                   <span className="text-sm text-wett-gold">92 posts</span>
                 </div>
                 <p className="text-sm text-gray-300 mb-2">Celebrate wins and inspire the family</p>
-                {session && (
+                {user && (
                   <div className="text-xs text-gray-400">
                     <span>Latest: &quot;Hit $10K MRR!&quot; by Jordan L. - 3d ago</span>
                   </div>
@@ -167,7 +167,7 @@ export default function MembersPage() {
                   <span className="text-sm text-wett-gold">67 posts</span>
                 </div>
                 <p className="text-sm text-gray-300 mb-2">Coordinate local gatherings and events</p>
-                {session && (
+                {user && (
                   <div className="text-xs text-gray-400">
                     <span>Latest: &quot;Oakland meetup Feb 15&quot; by Lisa W. - 1w ago</span>
                   </div>

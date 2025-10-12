@@ -1,17 +1,21 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
-import { redirect } from 'next/navigation'
+import { useAuth } from '@/lib/AuthContext'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function ProfilePage() {
-  const { data: session, status } = useSession()
+  const { user } = useAuth()
+  const router = useRouter()
 
-  if (status === 'loading') {
+  useEffect(() => {
+    if (!user) {
+      router.push('/login')
+    }
+  }, [user, router])
+
+  if (!user) {
     return <p>Loading...</p>
-  }
-
-  if (status === 'unauthenticated') {
-    redirect('/login')
   }
 
   return (
@@ -19,7 +23,7 @@ export default function ProfilePage() {
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-wett-gold">Welcome, {session?.user?.name || 'Member'}!</h1>
+            <h1 className="text-4xl font-bold text-wett-gold">Welcome, {user?.name || 'Member'}!</h1>
             <p className="text-lg text-gray-400">Your personal dashboard.</p>
           </div>
           <button className="mt-4 sm:mt-0 bg-wett-gold text-black font-bold py-2 px-4 rounded-lg hover:bg-yellow-400 transition duration-300">
@@ -31,8 +35,8 @@ export default function ProfilePage() {
         <div className="bg-gray-800 shadow-lg rounded-lg p-6 mb-8">
           <h2 className="text-2xl font-semibold text-white mb-4">Your Information</h2>
           <div className="space-y-2">
-            <p><strong>Name:</strong> {session?.user?.name}</p>
-            <p><strong>Email:</strong> {session?.user?.email}</p>
+            <p><strong>Name:</strong> {user?.name}</p>
+            <p><strong>Email:</strong> {user?.email}</p>
             <p><strong>Membership Tier:</strong> <span className="font-bold text-wett-gold">Community Tier</span></p>
           </div>
         </div>

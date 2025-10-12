@@ -2,30 +2,25 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useAuth } from '@/lib/AuthContext'
 import Link from 'next/link'
 
 export default function RegisterPage() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
   const router = useRouter()
+  const { register } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
 
-    const response = await fetch('/api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name, email, password })
-    })
-
-    if (response.ok) {
+    if (register(name, email, password)) {
       router.push('/login')
     } else {
-      // Handle errors
-      console.error('Registration failed')
+      setError('Email already registered')
     }
   }
 
@@ -63,6 +58,7 @@ export default function RegisterPage() {
             className="w-full p-2 bg-gray-800 rounded"
           />
         </div>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
         <button type="submit" className="bg-wett-gold text-deep-black py-2 px-4 rounded hover:bg-opacity-80">
           Register
         </button>

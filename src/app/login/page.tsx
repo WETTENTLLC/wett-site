@@ -1,16 +1,26 @@
 'use client'
 
 import { useState } from 'react'
-import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/lib/AuthContext'
 import Link from 'next/link'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const router = useRouter()
+  const { login } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    await signIn('credentials', { email, password, callbackUrl: '/' })
+    setError('')
+    
+    if (login(email, password)) {
+      router.push('/')
+    } else {
+      setError('Invalid email or password')
+    }
   }
 
   return (
@@ -37,6 +47,7 @@ export default function LoginPage() {
             className="w-full p-2 bg-gray-800 rounded"
           />
         </div>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
         <button type="submit" className="bg-wett-gold text-deep-black py-2 px-4 rounded hover:bg-opacity-80">
           Sign In
         </button>

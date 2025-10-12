@@ -1,11 +1,11 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
+import { useAuth } from '@/lib/AuthContext'
 import Link from 'next/link'
 import PayWhatYouWant from '@/components/PayWhatYouWant'
 
 export default function WettGirlsCollectivePage() {
-  const { data: session } = useSession()
+  const { user } = useAuth()
 
   const groupGoal = 10000
   const currentProgress = 3450
@@ -97,7 +97,7 @@ export default function WettGirlsCollectivePage() {
             onSuccess={() => alert('WETT TIDES contribution received! Thank you for building the empire.')}
           />
         </div>
-        {!session && (
+        {!user && (
           <div className="text-center bg-gray-700 p-6 rounded border-2 border-wett-gold">
             <p className="text-gray-300 mb-4">Login to make WETT TIDES contributions</p>
             <Link href="/login" className="bg-wett-gold text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition inline-block">Sign In</Link>
