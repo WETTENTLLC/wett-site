@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useAuth } from '@/lib/AuthContext';
 import { useRouter } from 'next/navigation';
 
@@ -22,7 +21,7 @@ const Header = () => {
     <header className="bg-deep-black text-clean-white p-4">
       <nav className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center">
-          <Image src="/wett-main-logo1.png" alt="WETT LIFESTYLE" width={120} height={60} priority />
+          <img src="/wett-site/wett-main-logo1.png" alt="WETT LIFESTYLE" width={120} height={60} />
         </Link>
         <div>
           {navigationItems.map((item) => (

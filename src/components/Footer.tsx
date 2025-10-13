@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 const currentYear = new Date().getFullYear();
 
@@ -11,8 +10,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-center items-center gap-12 mb-8">
           {/* Aura Profile */}
           <div className="flex flex-col items-center">
-            <Image 
-              src="/Aura Profile photo.png" 
+            <img 
+              src="/wett-site/Aura Profile photo.png" 
               alt="Aura - WETT Matriarch" 
               width={150} 
               height={150}
@@ -24,8 +23,8 @@ const Footer = () => {
           
           {/* Team Profile */}
           <div className="flex flex-col items-center">
-            <Image 
-              src="/The Team Profile Image.png" 
+            <img 
+              src="/wett-site/The Team Profile Image.png" 
               alt="WETT Girls Collective" 
               width={150} 
               height={150}

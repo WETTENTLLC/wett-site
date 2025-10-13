@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-
 const Hero = () => {
   const handleVideoError = () => {
     console.warn('Video failed to load, using fallback background');
@@ -23,8 +21,8 @@ const Hero = () => {
       <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
         {/* Large faded shimmering logo background */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <Image 
-            src="/wett-main-logo1.png" 
+          <img 
+            src="/wett-site/wett-main-logo1.png" 
             alt="WETT Logo" 
             width={800} 
             height={400}
@@ -32,7 +30,6 @@ const Hero = () => {
             style={{
               filter: 'drop-shadow(0 0 80px rgba(212, 175, 55, 0.4)) drop-shadow(0 0 120px rgba(212, 175, 55, 0.3))'
             }}
-            priority
           />
         </div>
         
