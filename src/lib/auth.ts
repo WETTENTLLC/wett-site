@@ -23,13 +23,6 @@ export const authService = {
   },
 
   login: (email: string, password: string): User | null => {
-    // Demo account
-    if (email === 'demo@wett.com' && password === 'password123') {
-      const user = { id: '1', name: 'WETT Member', email: 'demo@wett.com' };
-      localStorage.setItem(SESSION_KEY, JSON.stringify(user));
-      return user;
-    }
-    
     const users = JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
     const user = users.find((u: User & { password: string }) => 
       u.email === email && u.password === password
