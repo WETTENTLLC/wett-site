@@ -57,7 +57,7 @@ export default function Events() {
                     price={30}
                     title="Godfather's Harlem Ball GA"
                     description="General Admission - Nov 7th"
-                    onSuccess={() => alert('Ticket purchased! Check your email for confirmation.')}
+                    onSuccess={() => alert('✅ Payment Successful!\n\nYour ticket(s) have been purchased.\nConfirmation email sent to your PayPal email.\n\nEvent: Godfather\'s Harlem Ball\nDate: Nov 7th, 7-10pm\nVenue: 5925 S Virginia, Reno')}
                   />
                 </div>
                 <div>
@@ -75,7 +75,7 @@ export default function Events() {
                     price={450}
                     title="VIP Table Package"
                     description="VIP Table for 4 - Nov 7th"
-                    onSuccess={() => alert('VIP Table purchased! Check your email for confirmation.')}
+                    onSuccess={() => alert('✅ Payment Successful!\n\nYour VIP Table has been reserved!\nConfirmation email sent to your PayPal email.\n\nIncludes: 1 Bottle, 4 Plates, Table for 4\nEvent: Godfather\'s Harlem Ball\nDate: Nov 7th, 7-10pm')}
                   />
                 </div>
               </div>
@@ -147,7 +147,7 @@ export default function Events() {
                     price={25}
                     title="Blueprint Mixer GA"
                     description="General Admission to Blueprint Mixer - Nov 21st"
-                    onSuccess={() => alert('GA ticket purchased! Check your email for confirmation.')}
+                    onSuccess={() => alert('✅ Payment Successful!\n\nYour ticket(s) have been purchased.\nConfirmation email sent to your PayPal email.\n\nEvent: Blueprint Mixer\nDate: Nov 21st, 12-5pm\nLocation: San Francisco (details in email)')}
                   />
                 </div>
                 <div>
@@ -156,7 +156,7 @@ export default function Events() {
                     price={60}
                     title="Blueprint Mixer Founder's Circle"
                     description="Founder's Circle - Blueprint Mixer Nov 21st"
-                    onSuccess={() => alert('Founder\'s Circle ticket purchased! Check your email for confirmation.')}
+                    onSuccess={() => alert('✅ Payment Successful!\n\nFounder\'s Circle Reserved!\nConfirmation email sent to your PayPal email.\n\nIncludes: Reserved seating + gift bag\nEvent: Blueprint Mixer\nDate: Nov 21st, 12-5pm')}
                   />
                 </div>
               </div>
