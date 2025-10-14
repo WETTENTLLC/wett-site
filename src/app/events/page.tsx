@@ -1,6 +1,6 @@
 'use client'
 
-import PayWhatYouWant from '@/components/PayWhatYouWant'
+import TicketButton from '@/components/TicketButton'
 
 export default function Events() {
   return (
@@ -50,11 +50,10 @@ export default function Events() {
                 </ul>
               </div>
 
-              <PayWhatYouWant 
-                title="Get Your Ticket - $30"
-                description="Purchase your ticket to The Godfather's Harlem Ball"
-                suggestedAmounts={[30]}
-                minAmount={30}
+              <TicketButton 
+                price={30}
+                title="Godfather's Harlem Ball Ticket"
+                description="Ticket to The Godfather's Harlem Ball - Nov 7th"
                 onSuccess={() => alert('Ticket purchased! Check your email for confirmation.')}
               />
             </div>
@@ -71,7 +70,7 @@ export default function Events() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">🕐 Time</p>
-                  <p className="font-bold">11:00 AM - 2:00 PM</p>
+                  <p className="font-bold">12:00 PM - 5:00 PM</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">📍 Location</p>
@@ -121,21 +120,19 @@ export default function Events() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <p className="font-bold mb-2 text-center">General Admission</p>
-                  <PayWhatYouWant 
-                    title="GA Ticket - $25"
-                    description="General Admission to Blueprint Mixer"
-                    suggestedAmounts={[25]}
-                    minAmount={25}
+                  <TicketButton 
+                    price={25}
+                    title="Blueprint Mixer GA"
+                    description="General Admission to Blueprint Mixer - Nov 21st"
                     onSuccess={() => alert('GA ticket purchased! Check your email for confirmation.')}
                   />
                 </div>
                 <div>
                   <p className="font-bold mb-2 text-center text-wett-gold">Founder's Circle</p>
-                  <PayWhatYouWant 
-                    title="Founder's Circle - $60"
-                    description="Founder's Circle with reserved seating & gift bag"
-                    suggestedAmounts={[60]}
-                    minAmount={60}
+                  <TicketButton 
+                    price={60}
+                    title="Blueprint Mixer Founder's Circle"
+                    description="Founder's Circle - Blueprint Mixer Nov 21st"
                     onSuccess={() => alert('Founder\'s Circle ticket purchased! Check your email for confirmation.')}
                   />
                 </div>
