@@ -97,7 +97,7 @@ export default function Events() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">📍 Location</p>
-                  <p className="font-bold">San Francisco (Venue TBA)</p>
+                  <p className="font-bold">The Green Door, San Francisco</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">👔 Attire</p>
