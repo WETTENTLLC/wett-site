@@ -47,7 +47,6 @@ export default function Events() {
                   <li>🎵 Special Set: AI Slaps (40s/50s x Modern Rap Remakes)</li>
                   <li>💰 Vintage Dress Contest: $200 Cash & Prizes</li>
                   <li>🎲 Classic Gaming & Southern Cuisine</li>
-                  <li>💨 Hookah Available</li>
                 </ul>
               </div>
 
