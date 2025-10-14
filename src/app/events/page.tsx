@@ -50,12 +50,35 @@ export default function Events() {
                 </ul>
               </div>
 
-              <TicketButton 
-                price={30}
-                title="Godfather's Harlem Ball Ticket"
-                description="Ticket to The Godfather's Harlem Ball - Nov 7th"
-                onSuccess={() => alert('Ticket purchased! Check your email for confirmation.')}
-              />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p className="font-bold mb-2 text-center">General Admission</p>
+                  <TicketButton 
+                    price={30}
+                    title="Godfather's Harlem Ball GA"
+                    description="General Admission - Nov 7th"
+                    onSuccess={() => alert('Ticket purchased! Check your email for confirmation.')}
+                  />
+                </div>
+                <div>
+                  <p className="font-bold mb-2 text-center text-wett-gold">VIP Table for 4</p>
+                  <div className="bg-gray-700 p-3 rounded mb-2 text-sm">
+                    <p className="font-bold text-wett-gold mb-1">✨ Includes:</p>
+                    <ul className="text-xs space-y-1">
+                      <li>• 1 Bottle</li>
+                      <li>• 4 Plates of Food</li>
+                      <li>• Table for 4</li>
+                      <li>• Entry Included</li>
+                    </ul>
+                  </div>
+                  <TicketButton 
+                    price={450}
+                    title="VIP Table Package"
+                    description="VIP Table for 4 - Nov 7th"
+                    onSuccess={() => alert('VIP Table purchased! Check your email for confirmation.')}
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Nov 21st Event */}
