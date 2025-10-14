@@ -1,3 +1,7 @@
+'use client'
+
+import PayWhatYouWant from '@/components/PayWhatYouWant'
+
 export default function Events() {
   return (
     <main className="min-h-screen bg-deep-black text-clean-white">
@@ -47,11 +51,13 @@ export default function Events() {
                 </ul>
               </div>
 
-              <div className="bg-wett-gold text-black p-4 rounded font-bold mb-4">
-                <p className="text-center">🎁 SPECIAL OFFER: Purchase $50 at The Green Door & Get FREE Entry!</p>
-              </div>
-
-              <a href="https://wettlifestyle.com" className="inline-block bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">Get Tickets</a>
+              <PayWhatYouWant 
+                title="Get Your Ticket - $30"
+                description="Purchase your ticket to The Godfather's Harlem Ball"
+                suggestedAmounts={[30]}
+                minAmount={30}
+                onSuccess={() => alert('Ticket purchased! Check your email for confirmation.')}
+              />
             </div>
 
             {/* Nov 21st Event */}
@@ -107,9 +113,34 @@ export default function Events() {
                 </div>
               </div>
 
+              <div className="bg-wett-gold text-black p-4 rounded font-bold mb-4">
+                <p className="text-center">🎁 SPECIAL OFFER: Purchase $50 at The Green Door & Get FREE Entry!</p>
+              </div>
+
               <p className="text-sm text-gray-400 mb-4 italic">Space is intentionally limited to foster quality connections.</p>
 
-              <a href="https://wettlifestyle.com" className="inline-block bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">Reserve Your Spot</a>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p className="font-bold mb-2 text-center">General Admission</p>
+                  <PayWhatYouWant 
+                    title="GA Ticket - $25"
+                    description="General Admission to Blueprint Mixer"
+                    suggestedAmounts={[25]}
+                    minAmount={25}
+                    onSuccess={() => alert('GA ticket purchased! Check your email for confirmation.')}
+                  />
+                </div>
+                <div>
+                  <p className="font-bold mb-2 text-center text-wett-gold">Founder's Circle</p>
+                  <PayWhatYouWant 
+                    title="Founder's Circle - $60"
+                    description="Founder's Circle with reserved seating & gift bag"
+                    suggestedAmounts={[60]}
+                    minAmount={60}
+                    onSuccess={() => alert('Founder\'s Circle ticket purchased! Check your email for confirmation.')}
+                  />
+                </div>
+              </div>
             </div>
           </section>
           
