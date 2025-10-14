@@ -25,7 +25,7 @@ export default function Events() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">🕐 Time</p>
-                  <p className="font-bold">5:00 PM - 1:00 AM</p>
+                  <p className="font-bold">7:00 PM - 10:00 PM</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">📍 Location</p>
