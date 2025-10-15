@@ -1,31 +1,12 @@
-'use client';
-
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 export default function Dashboard() {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/login');
-    }
-  }, [status, router]);
-
-  if (status === 'loading') {
-    return <div className="min-h-screen bg-deep-black flex items-center justify-center"><p className="text-white">Loading...</p></div>;
-  }
-
-  if (!session) {
-    return null;
-  }
 
   return (
     <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold text-wett-gold mb-4">Welcome, {session.user?.name}</h1>
+      <h1 className="text-4xl font-bold text-wett-gold mb-4">Member Dashboard</h1>
       <p className="text-xl text-gray-300 mb-12">Your WETT Member Dashboard</p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
