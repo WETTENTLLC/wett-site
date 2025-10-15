@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { approveApplication, createUser } from '@/lib/db';
 import bcrypt from 'bcryptjs';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   try {
     const { id, email, name } = await request.json();
