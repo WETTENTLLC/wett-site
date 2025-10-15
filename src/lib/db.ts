@@ -1,4 +1,6 @@
-import { sql } from '@vercel/postgres';
+import { neon } from '@neondatabase/serverless';
+
+const sql = neon(process.env.DATABASE_URL!);
 
 export async function createTables() {
   await sql`
@@ -45,7 +47,7 @@ export async function createTables() {
 
 export async function getUser(email: string) {
   const result = await sql`SELECT * FROM users WHERE email = ${email}`;
-  return result.rows[0];
+  return result[0];
 }
 
 export async function createUser(email: string, password: string, name: string, role = 'member') {
@@ -54,7 +56,7 @@ export async function createUser(email: string, password: string, name: string, 
     VALUES (${email}, ${password}, ${name}, ${role}, 'approved')
     RETURNING *
   `;
-  return result.rows[0];
+  return result[0];
 }
 
 export async function saveApplication(data: any) {
@@ -68,7 +70,7 @@ export async function saveApplication(data: any) {
       ${data.why}, ${data.goals}, ${data.availability}
     ) RETURNING *
   `;
-  return result.rows[0];
+  return result[0];
 }
 
 export async function getPendingApplications() {
@@ -77,7 +79,7 @@ export async function getPendingApplications() {
     WHERE status = 'pending' 
     ORDER BY created_at DESC
   `;
-  return result.rows;
+  return result;
 }
 
 export async function approveApplication(id: number) {
@@ -90,12 +92,12 @@ export async function enrollUserInCourse(userId: number, courseName: string) {
     VALUES (${userId}, ${courseName})
     RETURNING *
   `;
-  return result.rows[0];
+  return result[0];
 }
 
 export async function getUserCourses(userId: number) {
   const result = await sql`
     SELECT * FROM course_enrollments WHERE user_id = ${userId}
   `;
-  return result.rows;
+  return result;
 }
