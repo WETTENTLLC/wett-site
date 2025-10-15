@@ -21,6 +21,12 @@ export default function WETTGirlsApplication() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    await fetch('/api/applications', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
     await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

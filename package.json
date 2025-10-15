@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@paypal/react-paypal-js": "^8.9.2",
+    "@vercel/postgres": "^0.10.0",
     "autoprefixer": "^10.4.21",
+    "bcryptjs": "^3.0.2",
     "next": "15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0"
