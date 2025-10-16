@@ -2,24 +2,39 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '@/lib/AuthContext'
 import Link from 'next/link'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const { login } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
+    setLoading(true)
     
-    if (login(email, password)) {
-      router.push('/')
-    } else {
-      setError('Invalid email or password')
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      })
+      
+      const data = await response.json()
+      
+      if (response.ok) {
+        localStorage.setItem('user', JSON.stringify(data.user))
+        router.push('/dashboard')
+      } else {
+        setError(data.error || 'Invalid email or password')
+      }
+    } catch (err) {
+      setError('Login failed. Please try again.')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -48,8 +63,8 @@ export default function LoginPage() {
           />
         </div>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <button type="submit" className="bg-wett-gold text-deep-black py-2 px-4 rounded hover:bg-opacity-80">
-          Sign In
+        <button type="submit" disabled={loading} className="bg-wett-gold text-deep-black py-2 px-4 rounded hover:bg-opacity-80 disabled:opacity-50">
+          {loading ? 'Signing in...' : 'Sign In'}
         </button>
       </form>
       <p className="text-center mt-4">
