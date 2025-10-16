@@ -8,9 +8,9 @@ export default function WettGirlsCollectivePage() {
   const { user } = useAuth()
 
   const groupGoal = 10000
-  const currentProgress = 3450
+  const currentProgress = 0
   const percentage = (currentProgress / groupGoal) * 100
-  const activeGirls = 23
+  const activeGirls = 1
 
 
 

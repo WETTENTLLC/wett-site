@@ -20,10 +20,10 @@ export default function Dashboard() {
           <p className="text-gray-300">Connect with sisters</p>
         </Link>
 
-        <div className="bg-gray-800 p-6 rounded-lg">
+        <Link href="/family/wett-girls-collective" className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition">
           <h2 className="text-2xl font-bold text-wett-gold mb-2">WETT TIDES</h2>
-          <p className="text-gray-300">Track contributions</p>
-        </div>
+          <p className="text-gray-300">Make your contribution</p>
+        </Link>
       </div>
 
       <div className="bg-gray-800 p-8 rounded-lg">
