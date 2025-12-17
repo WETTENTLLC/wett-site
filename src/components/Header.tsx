@@ -21,7 +21,7 @@ const Header = () => {
     <header className="bg-deep-black text-clean-white p-4">
       <nav className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center">
-          <img src="/wett-main-logo1.png" alt="WETT LIFESTYLE" width={120} height={60} />
+          <img src="/wett-site/wett-main-logo1.png" alt="WETT LIFESTYLE" width={120} height={60} />
         </Link>
         <div>
           {navigationItems.map((item) => (

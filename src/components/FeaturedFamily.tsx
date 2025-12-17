@@ -5,13 +5,13 @@ const familyMembers = [
     name: 'Aura - The Matriarch',
     description: 'The visionary and spiritual heart of the WETT ecosystem. Discover her philosophy and journey.',
     link: '/family/aura',
-    image: '/Aura Profile photo.png',
+    image: '/wett-site/Aura Profile photo.png',
   },
   {
     name: 'WETT Girls Collective',
     description: 'A sisterhood of empowered women driving culture and community forward. Meet the members and see their impact.',
     link: '/family/wett-girls-collective',
-    image: '/The Team Profile Image.png',
+    image: '/wett-site/The Team Profile Image.png',
   },
 ];
 

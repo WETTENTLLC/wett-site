@@ -3,11 +3,11 @@
 import Link from 'next/link';
 
 const empireLinks = [
-  { href: '/empire/wett-lifestyle-flagship', title: 'WETT Lifestyle Flagship', image: '/empire/flagship.svg', gradient: 'from-wett-gold to-yellow-600' },
-  { href: '/empire/snack-stop-shawty', title: 'Snack Stop Shawty', image: '/empire/snack-stop.svg', gradient: 'from-pink-500 to-purple-600' },
-  { href: 'https://bartradia.com', title: 'Bartradia', image: '/empire/bartradia.svg', gradient: 'from-blue-500 to-cyan-600' },
-  { href: '/empire/wett-studios-guild', title: 'WETT Studios & The Guild', image: '/empire/studios.svg', gradient: 'from-red-500 to-orange-600' },
-  { href: '/empire/music-media-division', title: 'Music & Media', image: '/empire/music-media.svg', gradient: 'from-purple-500 to-indigo-600' },
+  { href: '/empire/wett-lifestyle-flagship', title: 'WETT Lifestyle Flagship', image: '/wett-site/empire/flagship.svg', gradient: 'from-wett-gold to-yellow-600' },
+  { href: '/empire/snack-stop-shawty', title: 'Snack Stop Shawty', image: '/wett-site/empire/snack-stop.svg', gradient: 'from-pink-500 to-purple-600' },
+  { href: 'https://bartradia.com', title: 'Bartradia', image: '/wett-site/empire/bartradia.svg', gradient: 'from-blue-500 to-cyan-600' },
+  { href: '/empire/wett-studios-guild', title: 'WETT Studios & The Guild', image: '/wett-site/empire/studios.svg', gradient: 'from-red-500 to-orange-600' },
+  { href: '/empire/music-media-division', title: 'Music & Media', image: '/wett-site/empire/music-media.svg', gradient: 'from-purple-500 to-indigo-600' },
 ];
 
 const QuickNav = () => {

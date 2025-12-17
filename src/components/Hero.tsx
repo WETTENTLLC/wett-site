@@ -22,7 +22,7 @@ const Hero = () => {
         {/* Large faded shimmering logo background */}
         <div className="absolute inset-0 flex items-center justify-center">
           <img 
-            src="/wett-main-logo1.png" 
+            src="/wett-site/wett-main-logo1.png" 
             alt="WETT Logo" 
             width={800} 
             height={400}

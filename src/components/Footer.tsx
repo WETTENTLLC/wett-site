@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Aura Profile */}
           <div className="flex flex-col items-center">
             <img 
-              src="/Aura Profile photo.png" 
+              src="/wett-site/Aura Profile photo.png" 
               alt="Aura - WETT Matriarch" 
               width={150} 
               height={150}
@@ -24,7 +24,7 @@ const Footer = () => {
           {/* Team Profile */}
           <div className="flex flex-col items-center">
             <img 
-              src="/The Team Profile Image.png" 
+              src="/wett-site/The Team Profile Image.png" 
               alt="WETT Girls Collective" 
               width={150} 
               height={150}
