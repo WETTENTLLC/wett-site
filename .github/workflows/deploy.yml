@@ -28,6 +28,8 @@ jobs:
         env:
           NEXT_PUBLIC_PAYPAL_CLIENT_ID: AZ2bMj6Xao7XIjnX3e6DiVCRsZDduPleJQRNExQFoaxIO8S_8b3K0oAbii7O61rCm-tllymY72A1kTDg
           NEXT_PUBLIC_FORMSPREE_ID: xanpdbya
+      - run: ls -la
+      - run: ls -la out || echo "out folder not found"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
