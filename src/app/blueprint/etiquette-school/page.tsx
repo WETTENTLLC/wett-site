@@ -1,8 +1,35 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import PayWhatYouWant from '@/components/PayWhatYouWant';
+import { courseService } from '@/lib/courseProgress';
 
 export default function EtiquetteSchool() {
+  const [enrolled, setEnrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const courseId = 'etiquette-school';
+  const totalLessons = 6;
+
+  useEffect(() => {
+    const courseProgress = courseService.getCourseProgress(courseId);
+    if (courseProgress) {
+      setEnrolled(true);
+      setProgress(courseService.getCompletionPercentage(courseId, totalLessons));
+    }
+  }, []);
+
+  const handleEnrollment = () => {
+    courseService.enrollInCourse(courseId);
+    setEnrolled(true);
+    alert('✅ Enrolled in The Bag Builder!\n\nYour course access has been activated.\nScroll down to start Lesson 1.\n\nComplete all lessons and quizzes to earn your certification.');
+  };
+
+  const markLessonComplete = (lessonId: string) => {
+    courseService.completeLesson(courseId, lessonId);
+    setProgress(courseService.getCompletionPercentage(courseId, totalLessons));
+    alert('✅ Lesson Completed!\n\nGreat work! Continue to the next lesson.');
+  };
+
   return (
     <div className="container mx-auto py-12 px-4">
       <h1 className="text-5xl font-bold text-wett-gold mb-4 text-center">WETT Etiquette School</h1>
@@ -334,15 +361,98 @@ export default function EtiquetteSchool() {
           </div>
         </div>
         
-        <div className="text-center">
-          <PayWhatYouWant 
-            title="The Bag Builder Masterclass"
-            description="Suggested: $50 (basic access) | $150 (with certification) | $300+ (includes 1-on-1 coaching session). Pay what you can afford."
-            suggestedAmounts={[50, 150, 300]}
-            minAmount={25}
-            onSuccess={() => alert('Enrolled in The Bag Builder! Check your email for course access and materials.')}
-          />
-        </div>
+        {!enrolled ? (
+          <div className="text-center">
+            <div className="bg-gray-700 p-6 rounded-lg mb-6">
+              <h3 className="text-2xl font-bold text-wett-gold mb-4">📋 How to Enroll</h3>
+              <ol className="text-left text-gray-300 space-y-3 mb-6">
+                <li><strong>1.</strong> Choose your payment amount below</li>
+                <li><strong>2.</strong> Complete payment via PayPal</li>
+                <li><strong>3.</strong> Course unlocks immediately</li>
+                <li><strong>4.</strong> Complete all 6 lessons</li>
+                <li><strong>5.</strong> Pass quizzes at 90%+</li>
+                <li><strong>6.</strong> Earn your certification</li>
+              </ol>
+            </div>
+            <PayWhatYouWant 
+              title="The Bag Builder Masterclass"
+              description="Suggested: $50 (basic access) | $150 (with certification) | $300+ (includes 1-on-1 coaching session). Pay what you can afford."
+              suggestedAmounts={[50, 150, 300]}
+              minAmount={25}
+              onSuccess={handleEnrollment}
+            />
+          </div>
+        ) : (
+          <div className="text-center">
+            <div className="bg-gray-700 p-6 rounded-lg mb-6">
+              <h3 className="text-2xl font-bold text-wett-gold mb-4">🎓 Your Progress</h3>
+              <div className="w-full bg-gray-600 rounded-full h-8 mb-4">
+                <div 
+                  className="bg-wett-gold h-8 rounded-full flex items-center justify-center font-bold text-black transition-all duration-500"
+                  style={{ width: `${progress}%` }}
+                >
+                  {progress}%
+                </div>
+              </div>
+              <p className="text-gray-300">Complete all lessons below to earn your certification</p>
+            </div>
+            
+            <div className="space-y-4">
+              <button 
+                onClick={() => markLessonComplete('lesson-1')}
+                disabled={courseService.isLessonCompleted(courseId, 'lesson-1')}
+                className="w-full bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {courseService.isLessonCompleted(courseId, 'lesson-1') ? '✅ Lesson 1 Complete' : 'Mark Lesson 1 Complete'}
+              </button>
+              <button 
+                onClick={() => markLessonComplete('lesson-2')}
+                disabled={courseService.isLessonCompleted(courseId, 'lesson-2')}
+                className="w-full bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {courseService.isLessonCompleted(courseId, 'lesson-2') ? '✅ Lesson 2 Complete' : 'Mark Lesson 2 Complete'}
+              </button>
+              <button 
+                onClick={() => markLessonComplete('lesson-3')}
+                disabled={courseService.isLessonCompleted(courseId, 'lesson-3')}
+                className="w-full bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {courseService.isLessonCompleted(courseId, 'lesson-3') ? '✅ Lesson 3 Complete' : 'Mark Lesson 3 Complete'}
+              </button>
+              <button 
+                onClick={() => markLessonComplete('lesson-4')}
+                disabled={courseService.isLessonCompleted(courseId, 'lesson-4')}
+                className="w-full bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {courseService.isLessonCompleted(courseId, 'lesson-4') ? '✅ Lesson 4 Complete' : 'Mark Lesson 4 Complete'}
+              </button>
+              <button 
+                onClick={() => markLessonComplete('lesson-5')}
+                disabled={courseService.isLessonCompleted(courseId, 'lesson-5')}
+                className="w-full bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {courseService.isLessonCompleted(courseId, 'lesson-5') ? '✅ Lesson 5 Complete' : 'Mark Lesson 5 Complete'}
+              </button>
+              <button 
+                onClick={() => markLessonComplete('lesson-6')}
+                disabled={courseService.isLessonCompleted(courseId, 'lesson-6')}
+                className="w-full bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {courseService.isLessonCompleted(courseId, 'lesson-6') ? '✅ Lesson 6 Complete' : 'Mark Lesson 6 Complete'}
+              </button>
+              
+              {progress === 100 && (
+                <div className="bg-wett-gold text-black p-6 rounded-lg">
+                  <h3 className="text-2xl font-bold mb-2">🎉 Congratulations!</h3>
+                  <p className="mb-4">You've completed The Bag Builder Masterclass!</p>
+                  <a href="mailto:wettentertainmentllc@gmail.com?subject=Certificate Request - Etiquette School" className="inline-block bg-black text-wett-gold px-6 py-3 rounded-lg font-bold hover:bg-gray-900 transition">
+                    Request Your Certificate
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="bg-gray-800 p-8 rounded-lg text-center">

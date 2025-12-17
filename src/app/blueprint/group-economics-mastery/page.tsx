@@ -1,10 +1,34 @@
 'use client';
 
-import PayWhatYouWant from '@/components/PayWhatYouWant'
+import { useState, useEffect } from 'react';
+import PayWhatYouWant from '@/components/PayWhatYouWant';
+import { courseService } from '@/lib/courseProgress';
 
 export default function GroupEconomicsPage() {
+  const [enrolled, setEnrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const courseId = 'group-economics';
+  const totalWeeks = 16;
 
+  useEffect(() => {
+    const courseProgress = courseService.getCourseProgress(courseId);
+    if (courseProgress) {
+      setEnrolled(true);
+      setProgress(courseService.getCompletionPercentage(courseId, totalWeeks));
+    }
+  }, []);
 
+  const handleEnrollment = () => {
+    courseService.enrollInCourse(courseId);
+    setEnrolled(true);
+    alert('✅ Enrolled in Group Economics Mastery!\n\nYour 16-week course has started.\nComplete each week\'s module to progress.\n\nWe thrive together!');
+  };
+
+  const markWeekComplete = (weekId: string) => {
+    courseService.completeLesson(courseId, weekId);
+    setProgress(courseService.getCompletionPercentage(courseId, totalWeeks));
+    alert('✅ Week Completed!\n\nExcellent progress! Move on to the next week.');
+  };
 
   return (
     <div className="container mx-auto py-12 px-4">
@@ -54,23 +78,77 @@ export default function GroupEconomicsPage() {
           </ul>
         </div>
         
-        <div className="bg-gray-900 p-6 rounded-lg mt-6">
-          <h3 className="text-xl font-bold text-wett-gold mb-4">💰 Pay What You Want - We Thrive Together</h3>
-          <p className="text-gray-300 mb-6">We believe learning about group economics should be accessible to everyone. Pay what you can afford. Those who pay more help subsidize those who pay less. This is group economics in action.</p>
-          
-          <PayWhatYouWant 
-            title="Group Economics Mastery Course"
-            description="Suggested: $10 (solidarity) | $50 (standard) | $100+ (supporter). Every contribution helps another learner."
-            suggestedAmounts={[10, 50, 100]}
-            minAmount={5}
-            onSuccess={() => alert('Enrolled! Check your email for course access.')}
-          />
-          
-          <div className="bg-gray-800 p-4 rounded text-center mt-4">
-            <p className="text-sm text-gray-400 mb-2">Need full scholarship? <a href="mailto:wettentertainmentllc@gmail.com?subject=Scholarship Request" className="text-wett-gold hover:underline">Email us</a> (no proof required)</p>
-            <p className="text-xs text-gray-500">🎓 23 scholarships funded this month by our community</p>
+        {!enrolled ? (
+          <div className="bg-gray-900 p-6 rounded-lg mt-6">
+            <h3 className="text-xl font-bold text-wett-gold mb-4">📋 How to Enroll</h3>
+            <ol className="text-gray-300 space-y-2 mb-6">
+              <li><strong>1.</strong> Pay what you can afford below</li>
+              <li><strong>2.</strong> Course unlocks all 16 weeks immediately</li>
+              <li><strong>3.</strong> Complete weekly modules at your own pace</li>
+              <li><strong>4.</strong> Finish capstone project</li>
+              <li><strong>5.</strong> Earn your certificate</li>
+            </ol>
+            
+            <h3 className="text-xl font-bold text-wett-gold mb-4">💰 Pay What You Want - We Thrive Together</h3>
+            <p className="text-gray-300 mb-6">We believe learning about group economics should be accessible to everyone. Pay what you can afford. Those who pay more help subsidize those who pay less. This is group economics in action.</p>
+            
+            <PayWhatYouWant 
+              title="Group Economics Mastery Course"
+              description="Suggested: $10 (solidarity) | $50 (standard) | $100+ (supporter). Every contribution helps another learner."
+              suggestedAmounts={[10, 50, 100]}
+              minAmount={5}
+              onSuccess={handleEnrollment}
+            />
+            
+            <div className="bg-gray-800 p-4 rounded text-center mt-4">
+              <p className="text-sm text-gray-400 mb-2">Need full scholarship? <a href="mailto:wettentertainmentllc@gmail.com?subject=Scholarship Request" className="text-wett-gold hover:underline">Email us</a> (no proof required)</p>
+              <p className="text-xs text-gray-500">🎓 23 scholarships funded this month by our community</p>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="bg-gray-900 p-6 rounded-lg mt-6">
+            <h3 className="text-2xl font-bold text-wett-gold mb-4">📊 Your Progress</h3>
+            <div className="w-full bg-gray-700 rounded-full h-8 mb-6">
+              <div 
+                className="bg-wett-gold h-8 rounded-full flex items-center justify-center font-bold text-black transition-all duration-500"
+                style={{ width: `${progress}%` }}
+              >
+                {progress}%
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+              {Array.from({ length: 16 }, (_, i) => {
+                const weekId = `week-${i + 1}`;
+                const completed = courseService.isLessonCompleted(courseId, weekId);
+                return (
+                  <button
+                    key={weekId}
+                    onClick={() => markWeekComplete(weekId)}
+                    disabled={completed}
+                    className={`p-3 rounded font-bold transition ${
+                      completed 
+                        ? 'bg-wett-gold text-black' 
+                        : 'bg-gray-700 text-white hover:bg-gray-600'
+                    } disabled:cursor-not-allowed`}
+                  >
+                    {completed ? '✅' : ''} Week {i + 1}
+                  </button>
+                );
+              })}
+            </div>
+            
+            {progress === 100 && (
+              <div className="bg-wett-gold text-black p-6 rounded-lg text-center">
+                <h3 className="text-2xl font-bold mb-2">🎉 Course Complete!</h3>
+                <p className="mb-4">You've mastered Group Economics!</p>
+                <a href="mailto:wettentertainmentllc@gmail.com?subject=Certificate Request - Group Economics" className="inline-block bg-black text-wett-gold px-6 py-3 rounded-lg font-bold hover:bg-gray-900 transition">
+                  Request Your Certificate
+                </a>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="bg-gray-800 p-6 rounded-lg mb-8">
