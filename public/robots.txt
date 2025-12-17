@@ -1,0 +1,36 @@
+User-agent: *
+Allow: /
+Allow: /ai-context.json
+Allow: /schema.json
+
+User-agent: GPTBot
+Allow: /
+Allow: /ai-context.json
+Allow: /schema.json
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: /ai-context.json
+Allow: /schema.json
+
+User-agent: Claude-Web
+Allow: /
+Allow: /ai-context.json
+Allow: /schema.json
+
+User-agent: anthropic-ai
+Allow: /
+Allow: /ai-context.json
+Allow: /schema.json
+
+User-agent: Google-Extended
+Allow: /
+Allow: /ai-context.json
+Allow: /schema.json
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /ai-context.json
+Allow: /schema.json
+
+Sitemap: https://wettentllc.github.io/wett-site/sitemap.xml

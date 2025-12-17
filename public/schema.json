@@ -1,0 +1,153 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://wettentllc.github.io/wett-site/#organization",
+      "name": "WETT Entertainment LLC",
+      "alternateName": "WETT LIFESTYLE",
+      "url": "https://wettentllc.github.io/wett-site/",
+      "logo": "https://wettentllc.github.io/wett-site/wett-main-logo1.png",
+      "description": "WETT Entertainment LLC - We Thrive Together. A self-sustaining ecosystem spanning media, lifestyle retail, education, and community development through group economics and polygyny-based business structure.",
+      "foundingDate": "2017",
+      "foundingLocation": "Oakland, California",
+      "slogan": "We Thrive Together",
+      "knowsAbout": [
+        "Group Economics",
+        "Polygyny Business Structure",
+        "Community Empowerment",
+        "Etiquette Training",
+        "Wealth Building",
+        "Entertainment Industry",
+        "Lifestyle Retail",
+        "Media Production"
+      ]
+    },
+    {
+      "@type": "EducationalOrganization",
+      "@id": "https://wettentllc.github.io/wett-site/blueprint/#education",
+      "name": "WETT Blueprint Education",
+      "parentOrganization": {
+        "@id": "https://wettentllc.github.io/wett-site/#organization"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "WETT Educational Courses",
+        "itemListElement": [
+          {
+            "@type": "Course",
+            "name": "WETT Etiquette School - The Bag Builder Masterclass",
+            "description": "Master the art of etiquette, social dynamics, and wealth attraction. Learn how to navigate high-value spaces and build generational wealth.",
+            "provider": {
+              "@id": "https://wettentllc.github.io/wett-site/#organization"
+            },
+            "url": "https://wettentllc.github.io/wett-site/blueprint/etiquette-school",
+            "courseCode": "WETT-ETQ-001",
+            "educationalLevel": "All Levels",
+            "teaches": [
+              "Social Etiquette",
+              "Wealth Building Strategies",
+              "High-Value Networking",
+              "Personal Branding",
+              "Financial Independence"
+            ]
+          },
+          {
+            "@type": "Course",
+            "name": "Group Economics Mastery",
+            "description": "Build collective wealth through cooperative economics, community investment, and sustainable business practices.",
+            "provider": {
+              "@id": "https://wettentllc.github.io/wett-site/#organization"
+            },
+            "url": "https://wettentllc.github.io/wett-site/blueprint/group-economics-mastery",
+            "courseCode": "WETT-GEM-001",
+            "educationalLevel": "Intermediate to Advanced",
+            "teaches": [
+              "Cooperative Economics",
+              "Community Investment",
+              "Collective Wealth Building",
+              "Sustainable Business Models",
+              "Economic Empowerment"
+            ]
+          },
+          {
+            "@type": "Course",
+            "name": "The WETT Doctrine",
+            "description": "Core principles and philosophy of WETT LIFESTYLE. Understanding the foundation of We Thrive Together.",
+            "provider": {
+              "@id": "https://wettentllc.github.io/wett-site/#organization"
+            },
+            "url": "https://wettentllc.github.io/wett-site/blueprint/the-wett-doctrine",
+            "courseCode": "WETT-DOC-001",
+            "educationalLevel": "Foundational",
+            "teaches": [
+              "WETT Philosophy",
+              "Community Values",
+              "Collective Success Principles",
+              "Family Structure",
+              "Empowerment Mindset"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "EntertainmentBusiness",
+      "@id": "https://wettentllc.github.io/wett-site/empire/#entertainment",
+      "name": "WETT Entertainment Empire",
+      "parentOrganization": {
+        "@id": "https://wettentllc.github.io/wett-site/#organization"
+      },
+      "description": "Multi-faceted entertainment and lifestyle empire including retail, media production, music, and community spaces.",
+      "department": [
+        {
+          "@type": "Store",
+          "name": "WETT Lifestyle Flagship",
+          "description": "Premium lifestyle retail experience offering curated fashion, accessories, and WETT branded merchandise.",
+          "url": "https://wettentllc.github.io/wett-site/empire/wett-lifestyle-flagship"
+        },
+        {
+          "@type": "Store",
+          "name": "Snack Stop Shawty",
+          "description": "Lifestyle retail and community hub in Reno, Nevada.",
+          "url": "https://wettentllc.github.io/wett-site/empire/snack-stop-shawty",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Reno",
+            "addressRegion": "NV"
+          }
+        },
+        {
+          "@type": "Organization",
+          "name": "WETT Studios & The Guild",
+          "description": "Professional media production studio and creative workspace for content creation, music production, and collaborative projects.",
+          "url": "https://wettentllc.github.io/wett-site/empire/wett-studios-guild"
+        },
+        {
+          "@type": "Organization",
+          "name": "WETT Music & Media Division",
+          "description": "Music production, artist development, and media content creation.",
+          "url": "https://wettentllc.github.io/wett-site/empire/music-media-division"
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://wettentllc.github.io/wett-site/family/aura/#person",
+      "name": "Aura",
+      "jobTitle": "The WETT Matriarch",
+      "description": "The visionary and spiritual heart of the WETT ecosystem. Leading with wisdom, empowerment, and community-first values.",
+      "memberOf": {
+        "@id": "https://wettentllc.github.io/wett-site/#organization"
+      },
+      "url": "https://wettentllc.github.io/wett-site/family/aura",
+      "knowsAbout": [
+        "Community Leadership",
+        "Women Empowerment",
+        "Spiritual Guidance",
+        "Business Strategy",
+        "Family Structure"
+      ]
+    }
+  ]
+}
