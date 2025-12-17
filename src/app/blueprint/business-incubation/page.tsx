@@ -33,17 +33,17 @@ export default function BusinessIncubationPage() {
             <div className="bg-gray-700 p-4 rounded">
               <h3 className="font-bold text-white mb-2">1-on-1 Mentorship</h3>
               <p className="text-sm text-gray-300 mb-3">Get paired with experienced entrepreneurs in your industry</p>
-              <button className="bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition">Request Mentor</button>
+              <a href="mailto:wettentertainmentllc@gmail.com?subject=Mentorship Request" className="inline-block bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition text-center">Request Mentor</a>
             </div>
             <div className="bg-gray-700 p-4 rounded">
               <h3 className="font-bold text-white mb-2">Group Coaching</h3>
               <p className="text-sm text-gray-300 mb-3">Weekly sessions with cohorts of fellow founders</p>
-              <button className="bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition">Join Cohort</button>
+              <a href="mailto:wettentertainmentllc@gmail.com?subject=Join Coaching Cohort" className="inline-block bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition text-center">Join Cohort</a>
             </div>
             <div className="bg-gray-700 p-4 rounded">
               <h3 className="font-bold text-white mb-2">Office Hours</h3>
               <p className="text-sm text-gray-300 mb-3">Drop-in sessions every Tuesday & Thursday</p>
-              <button className="bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition">Book Session</button>
+              <a href="mailto:wettentertainmentllc@gmail.com?subject=Book Office Hours" className="inline-block bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition text-center">Book Session</a>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function BusinessIncubationPage() {
             </div>
           </div>
         </div>
-        <button className="mt-6 bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">Upgrade to Business Tier</button>
+        <a href="/collective/the-wett-collective" className="inline-block mt-6 bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">Upgrade to Business Tier</a>
       </div>
     </div>
   );

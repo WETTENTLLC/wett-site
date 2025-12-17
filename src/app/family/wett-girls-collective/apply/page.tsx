@@ -21,22 +21,25 @@ export default function WETTGirlsApplication() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    await fetch('/api/applications', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
+    try {
+      const response = await fetch('https://formspree.io/f/xanpdbya', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          _subject: 'WETT Girls Application',
+          ...formData
+        })
+      });
 
-    await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        _subject: 'WETT Girls Application',
-        ...formData
-      })
-    });
-
-    router.push('/family/wett-girls-collective?application=submitted');
+      if (response.ok) {
+        alert('✅ Application Submitted!\n\nThank you for applying to the WETT Girls Collective.\n\nWe\'ll review your application and contact you within 3-5 business days.');
+        router.push('/family/wett-girls-collective');
+      } else {
+        alert('❌ Submission failed. Please try again or email us directly at wettentertainmentllc@gmail.com');
+      }
+    } catch (error) {
+      alert('❌ Submission failed. Please try again or email us directly at wettentertainmentllc@gmail.com');
+    }
   };
 
   return (

@@ -33,12 +33,12 @@ export default function CommunityWisdomPage() {
             <div className="bg-gray-700 p-4 rounded">
               <h3 className="font-bold text-white mb-2">Monthly Q&A with Bay&apos;Hef</h3>
               <p className="text-sm text-gray-300 mb-3">Ask the King directly about business, life, and building legacy</p>
-              <button className="bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition">Join Next Session</button>
+              <a href="mailto:wettentertainmentllc@gmail.com?subject=Join Q&A Session" className="inline-block bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition">Join Next Session</a>
             </div>
             <div className="bg-gray-700 p-4 rounded">
               <h3 className="font-bold text-white mb-2">Aura&apos;s Office Hours</h3>
               <p className="text-sm text-gray-300 mb-3">Get guidance on family dynamics and business strategy</p>
-              <button className="bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition">Book Time</button>
+              <a href="/family/aura" className="inline-block bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition">Book Time</a>
             </div>
           </div>
         </div>
@@ -73,12 +73,12 @@ export default function CommunityWisdomPage() {
           <div className="bg-gray-700 p-4 rounded">
             <h3 className="font-bold text-white mb-2">Find a Mentor</h3>
             <p className="text-sm text-gray-300 mb-3">Get guidance from someone who&apos;s been there</p>
-            <button className="bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition">Request Mentor</button>
+            <a href="mailto:wettentertainmentllc@gmail.com?subject=Request Mentor" className="inline-block bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition">Request Mentor</a>
           </div>
           <div className="bg-gray-700 p-4 rounded">
             <h3 className="font-bold text-white mb-2">Become a Mentor</h3>
             <p className="text-sm text-gray-300 mb-3">Share your knowledge and lift others up</p>
-            <button className="bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition">Apply to Mentor</button>
+            <a href="mailto:wettentertainmentllc@gmail.com?subject=Become a Mentor" className="inline-block bg-wett-gold text-black px-4 py-2 rounded font-bold text-sm hover:bg-yellow-400 transition">Apply to Mentor</a>
           </div>
         </div>
       </div>
