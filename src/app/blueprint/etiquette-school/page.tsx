@@ -274,6 +274,22 @@ export default function EtiquetteSchool() {
         ) : null}
       </div>
 
+      <div className="bg-gray-800 p-8 rounded-lg mb-8">
+        <h2 className="text-3xl font-bold text-wett-gold mb-6 text-center">💬 Need Help? Get Support</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gray-700 p-6 rounded-lg">
+            <h3 className="text-xl font-bold text-white mb-3">📚 Course Forum</h3>
+            <p className="text-gray-300 mb-4">Discuss lessons, share insights, and get feedback from other students in the Etiquette School forum.</p>
+            <a href="/family/members" className="inline-block bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition">Join Discussion</a>
+          </div>
+          <div className="bg-gray-700 p-6 rounded-lg">
+            <h3 className="text-xl font-bold text-white mb-3">💛 Ask Aura</h3>
+            <p className="text-gray-300 mb-4">Get personalized guidance from Aura, the WETT Matriarch. She&apos;s here to help you thrive.</p>
+            <a href="/family/aura" className="inline-block bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition">Chat with Aura</a>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-gray-800 p-8 rounded-lg text-center">
         <h2 className="text-3xl font-bold text-wett-gold mb-4">Go Build Your Bag</h2>
         <p className="text-xl text-gray-300 mb-6">
