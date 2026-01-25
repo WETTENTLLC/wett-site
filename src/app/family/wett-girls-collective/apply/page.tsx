@@ -20,6 +20,7 @@ export default function WETTGirlsApplication() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Form submission started', formData);
     
     try {
       const response = await fetch('https://formspree.io/f/xanpdbya', {
@@ -31,13 +32,17 @@ export default function WETTGirlsApplication() {
         })
       });
 
+      console.log('Response received:', response.status);
+      
       if (response.ok) {
         alert('✅ Application Submitted!\n\nThank you for applying to the WETT Girls Collective.\n\nWe\'ll review your application and contact you within 3-5 business days.');
-        router.push('/family/wett-girls-collective');
+        router.push('/family/wett-girls-collective?application=submitted');
       } else {
+        console.error('Submission failed with status:', response.status);
         alert('❌ Submission failed. Please try again or email us directly at wettentertainmentllc@gmail.com');
       }
     } catch (error) {
+      console.error('Submission error:', error);
       alert('❌ Submission failed. Please try again or email us directly at wettentertainmentllc@gmail.com');
     }
   };
@@ -60,7 +65,7 @@ export default function WETTGirlsApplication() {
               required
               value={formData.fullName}
               onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-              className="w-full px-4 py-3 bg-clean-white text-deep-black rounded"
+              className="w-full px-4 py-3 bg-white text-black rounded border-2 border-gray-300 focus:border-wett-gold focus:outline-none"
             />
           </div>
 
@@ -72,7 +77,7 @@ export default function WETTGirlsApplication() {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full px-4 py-3 bg-clean-white text-deep-black rounded"
+                className="w-full px-4 py-3 bg-white text-black rounded border-2 border-gray-300 focus:border-wett-gold focus:outline-none"
               />
             </div>
             <div>
@@ -82,7 +87,7 @@ export default function WETTGirlsApplication() {
                 required
                 value={formData.phone}
                 onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                className="w-full px-4 py-3 bg-clean-white text-deep-black rounded"
+                className="w-full px-4 py-3 bg-white text-black rounded border-2 border-gray-300 focus:border-wett-gold focus:outline-none"
               />
             </div>
           </div>
@@ -95,7 +100,7 @@ export default function WETTGirlsApplication() {
                 required
                 value={formData.age}
                 onChange={(e) => setFormData({...formData, age: e.target.value})}
-                className="w-full px-4 py-3 bg-clean-white text-deep-black rounded"
+                className="w-full px-4 py-3 bg-white text-black rounded border-2 border-gray-300 focus:border-wett-gold focus:outline-none"
               />
             </div>
             <div>
@@ -105,7 +110,7 @@ export default function WETTGirlsApplication() {
                 required
                 value={formData.location}
                 onChange={(e) => setFormData({...formData, location: e.target.value})}
-                className="w-full px-4 py-3 bg-clean-white text-deep-black rounded"
+                className="w-full px-4 py-3 bg-white text-black rounded border-2 border-gray-300 focus:border-wett-gold focus:outline-none"
               />
             </div>
           </div>
@@ -116,7 +121,7 @@ export default function WETTGirlsApplication() {
               type="text"
               value={formData.instagram}
               onChange={(e) => setFormData({...formData, instagram: e.target.value})}
-              className="w-full px-4 py-3 bg-clean-white text-deep-black rounded"
+              className="w-full px-4 py-3 bg-white text-black rounded border-2 border-gray-300 focus:border-wett-gold focus:outline-none"
               placeholder="@yourusername"
             />
           </div>
@@ -128,7 +133,7 @@ export default function WETTGirlsApplication() {
               rows={4}
               value={formData.experience}
               onChange={(e) => setFormData({...formData, experience: e.target.value})}
-              className="w-full px-4 py-3 bg-clean-white text-deep-black rounded"
+              className="w-full px-4 py-3 bg-white text-black rounded border-2 border-gray-300 focus:border-wett-gold focus:outline-none"
             />
           </div>
 
@@ -139,7 +144,7 @@ export default function WETTGirlsApplication() {
               rows={4}
               value={formData.why}
               onChange={(e) => setFormData({...formData, why: e.target.value})}
-              className="w-full px-4 py-3 bg-clean-white text-deep-black rounded"
+              className="w-full px-4 py-3 bg-white text-black rounded border-2 border-gray-300 focus:border-wett-gold focus:outline-none"
             />
           </div>
 
@@ -150,7 +155,7 @@ export default function WETTGirlsApplication() {
               rows={4}
               value={formData.goals}
               onChange={(e) => setFormData({...formData, goals: e.target.value})}
-              className="w-full px-4 py-3 bg-clean-white text-deep-black rounded"
+              className="w-full px-4 py-3 bg-white text-black rounded border-2 border-gray-300 focus:border-wett-gold focus:outline-none"
             />
           </div>
 
@@ -161,7 +166,7 @@ export default function WETTGirlsApplication() {
               required
               value={formData.availability}
               onChange={(e) => setFormData({...formData, availability: e.target.value})}
-              className="w-full px-4 py-3 bg-clean-white text-deep-black rounded"
+              className="w-full px-4 py-3 bg-white text-black rounded border-2 border-gray-300 focus:border-wett-gold focus:outline-none"
             />
           </div>
 
