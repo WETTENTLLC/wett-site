@@ -17,9 +17,12 @@ export default function WETTGirlsApplication() {
     goals: '',
     availability: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     console.log('Form submission started', formData);
     
     try {
@@ -35,15 +38,19 @@ export default function WETTGirlsApplication() {
       console.log('Response received:', response.status);
       
       if (response.ok) {
-        alert('✅ Application Submitted!\n\nThank you for applying to the WETT Girls Collective.\n\nWe\'ll review your application and contact you within 3-5 business days.');
-        router.push('/family/wett-girls-collective?application=submitted');
+        setShowSuccess(true);
+        setTimeout(() => {
+          router.push('/family/wett-girls-collective?application=submitted');
+        }, 4000);
       } else {
         console.error('Submission failed with status:', response.status);
         alert('❌ Submission failed. Please try again or email us directly at wettentertainmentllc@gmail.com');
+        setIsSubmitting(false);
       }
     } catch (error) {
       console.error('Submission error:', error);
       alert('❌ Submission failed. Please try again or email us directly at wettentertainmentllc@gmail.com');
+      setIsSubmitting(false);
     }
   };
 
@@ -56,6 +63,20 @@ export default function WETTGirlsApplication() {
         <p className="text-xl text-gray-300 mb-8">
           Declare your intent. Tell us your story and your vision.
         </p>
+
+        {showSuccess && (
+          <div className="mb-8 bg-gradient-to-r from-green-500 to-green-600 text-white p-8 rounded-lg shadow-2xl border-2 border-green-400 animate-pulse">
+            <div className="flex items-center justify-center mb-4">
+              <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h2 className="text-3xl font-bold text-center mb-4">✅ Application Received!</h2>
+            <p className="text-xl text-center mb-2">Thank you for applying to the WETT Girls Collective.</p>
+            <p className="text-lg text-center">Your application is now under review. We'll contact you within 3-5 business days.</p>
+            <p className="text-sm text-center mt-4 opacity-90">Redirecting you back to the main page...</p>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -172,9 +193,20 @@ export default function WETTGirlsApplication() {
 
           <button
             type="submit"
-            className="w-full bg-wett-gold text-deep-black px-8 py-4 rounded font-bold text-lg hover:bg-opacity-90 transition"
+            disabled={isSubmitting}
+            className="w-full bg-white text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 active:scale-95 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
           >
-            Submit Application
+            {isSubmitting ? (
+              <span className="flex items-center justify-center gap-3">
+                <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Submitting Application...
+              </span>
+            ) : (
+              'Submit Application'
+            )}
           </button>
         </form>
       </div>
