@@ -132,27 +132,70 @@ export default function WettGirlsCollectivePage() {
       </div>
 
       <div className="bg-gray-800 p-8 rounded-lg mb-8">
-        <h2 className="text-2xl font-bold text-wett-gold mb-6">🚀 Your Blueprint to Joining the Dynasty</h2>
-        <p className="text-gray-300 mb-6">We believe in standards, not barriers. Your past does not define your future here; your ambition and loyalty do.</p>
+        <h2 className="text-2xl font-bold text-wett-gold mb-6 text-center">🚀 Your Path to Joining the Sisterhood</h2>
+        <p className="text-gray-300 mb-8 text-center max-w-3xl mx-auto">We believe in standards, not barriers. Your past does not define your future here; your ambition and loyalty do. Follow these steps to become a full member of the WETT Girls Collective.</p>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gray-700 p-6 rounded">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="bg-gray-700 p-6 rounded-lg border-2 border-wett-gold">
+            <div className="flex items-center justify-center w-12 h-12 bg-wett-gold text-black rounded-full font-bold text-xl mb-4 mx-auto">1</div>
             <div className="text-4xl mb-3 text-center">📝</div>
-            <h3 className="font-bold text-white mb-2 text-center">Step 1: The Application – Declare Your Intent</h3>
-            <p className="text-sm text-gray-300 text-center mb-4">This is your first act of commitment. Tell us your story and your vision.</p>
+            <h3 className="font-bold text-white mb-2 text-center">Submit Application</h3>
+            <p className="text-sm text-gray-300 text-center mb-4">Declare your intent. Tell us your story, your vision, and why you want to join.</p>
             <Link href="/family/wett-girls-collective/apply" className="block bg-wett-gold text-black px-4 py-2 rounded font-bold text-center hover:bg-yellow-400 transition">Apply Now</Link>
           </div>
-          <div className="bg-gray-700 p-6 rounded">
-            <div className="text-4xl mb-3 text-center">🎓</div>
-            <h3 className="font-bold text-white mb-2 text-center">Step 2: The WETT Doctrine – Learn the Blueprint</h3>
-            <p className="text-sm text-gray-300 text-center mb-4">Complete our foundational course. Understand the &quot;We Thrive Together&quot; philosophy, our business structure, and the rules of the sisterhood.</p>
-            <Link href="/blueprint/the-wett-doctrine" className="block bg-gray-600 text-white px-4 py-2 rounded font-bold text-center hover:bg-gray-500 transition">Start Course</Link>
+
+          <div className="bg-gray-700 p-6 rounded-lg">
+            <div className="flex items-center justify-center w-12 h-12 bg-gray-600 text-white rounded-full font-bold text-xl mb-4 mx-auto">2</div>
+            <div className="text-4xl mb-3 text-center">📜</div>
+            <h3 className="font-bold text-white mb-2 text-center">Study The WETT Doctrine</h3>
+            <p className="text-sm text-gray-300 text-center mb-4">Learn the &quot;We Thrive Together&quot; philosophy, our business structure, and the principles of the sisterhood.</p>
+            <span className="block text-center text-sm text-gray-400 italic">Unlocks after application approval</span>
           </div>
-          <div className="bg-gray-700 p-6 rounded">
-            <div className="text-4xl mb-3 text-center">🤝</div>
-            <h3 className="font-bold text-white mb-2 text-center">Step 3: The Inner Circle – Connect with Your Sisters</h3>
-            <p className="text-sm text-gray-300 text-center mb-4">Gain access to our private community. This is where strategies are born, deals are made, and lifelong alliances are forged.</p>
-            <Link href="/family/members" className="block bg-gray-600 text-white px-4 py-2 rounded font-bold text-center hover:bg-gray-500 transition">Join Community</Link>
+
+          <div className="bg-gray-700 p-6 rounded-lg">
+            <div className="flex items-center justify-center w-12 h-12 bg-gray-600 text-white rounded-full font-bold text-xl mb-4 mx-auto">3</div>
+            <div className="text-4xl mb-3 text-center">👔</div>
+            <h3 className="font-bold text-white mb-2 text-center">Complete Etiquette School</h3>
+            <p className="text-sm text-gray-300 text-center mb-4">Master modern etiquette - your path from the block to the boardroom. 6 lessons required.</p>
+            <span className="block text-center text-sm text-gray-400 italic">Unlocks after Doctrine completion</span>
+          </div>
+
+          <div className="bg-gray-700 p-6 rounded-lg">
+            <div className="flex items-center justify-center w-12 h-12 bg-gray-600 text-white rounded-full font-bold text-xl mb-4 mx-auto">4</div>
+            <div className="text-4xl mb-3 text-center">👑</div>
+            <h3 className="font-bold text-white mb-2 text-center">Full Membership</h3>
+            <p className="text-sm text-gray-300 text-center mb-4">Join the Inner Circle. Access WETT TIDES, private community, and all sister benefits.</p>
+            <span className="block text-center text-sm text-gray-400 italic">Welcome to the dynasty!</span>
+          </div>
+        </div>
+
+        <div className="mt-8 bg-black/50 p-6 rounded-lg border-2 border-wett-gold">
+          <h3 className="text-xl font-bold text-wett-gold mb-4 text-center">📋 What You'll Receive</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-300">
+            <div className="flex items-start gap-3">
+              <span className="text-wett-gold text-xl">✓</span>
+              <div>
+                <strong className="text-white">After Application Approval:</strong> Access to The WETT Doctrine course + Welcome email with next steps
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-wett-gold text-xl">✓</span>
+              <div>
+                <strong className="text-white">After Doctrine Completion:</strong> WETT Etiquette School enrollment (6 lessons) + Progress tracker
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-wett-gold text-xl">✓</span>
+              <div>
+                <strong className="text-white">After Etiquette School:</strong> Certificate of completion + WETT TIDES access + Private community invite
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-wett-gold text-xl">✓</span>
+              <div>
+                <strong className="text-white">Full Member Benefits:</strong> All sisterhood perks, business opportunities, residual income programs
+              </div>
+            </div>
           </div>
         </div>
       </div>

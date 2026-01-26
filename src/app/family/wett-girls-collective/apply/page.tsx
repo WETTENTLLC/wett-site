@@ -40,8 +40,8 @@ export default function WETTGirlsApplication() {
       if (response.ok) {
         setShowSuccess(true);
         setTimeout(() => {
-          router.push('/family/wett-girls-collective?application=submitted');
-        }, 4000);
+          router.push('/family/wett-girls-collective/onboarding');
+        }, 6000);
       } else {
         console.error('Submission failed with status:', response.status);
         alert('❌ Submission failed. Please try again or email us directly at wettentertainmentllc@gmail.com');
@@ -72,9 +72,29 @@ export default function WETTGirlsApplication() {
               </svg>
             </div>
             <h2 className="text-3xl font-bold text-center mb-4">✅ Application Received!</h2>
-            <p className="text-xl text-center mb-2">Thank you for applying to the WETT Girls Collective.</p>
-            <p className="text-lg text-center">Your application is now under review. We'll contact you within 3-5 business days.</p>
-            <p className="text-sm text-center mt-4 opacity-90">Redirecting you back to the main page...</p>
+            <p className="text-xl text-center mb-4">Thank you for applying to the WETT Girls Collective.</p>
+            <div className="bg-white/20 p-6 rounded-lg mb-4">
+              <h3 className="text-lg font-bold mb-3 text-center">📋 Next Steps:</h3>
+              <ol className="space-y-2 text-left max-w-2xl mx-auto">
+                <li className="flex items-start gap-3">
+                  <span className="font-bold text-yellow-300">1.</span>
+                  <span>We'll review your application within 3-5 business days</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="font-bold text-yellow-300">2.</span>
+                  <span>Upon approval, you'll receive access to <strong>The WETT Doctrine</strong> course via email</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="font-bold text-yellow-300">3.</span>
+                  <span>After completing the Doctrine, <strong>WETT Etiquette School</strong> will unlock automatically</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="font-bold text-yellow-300">4.</span>
+                  <span>Complete Etiquette School (6 lessons) to gain full membership access</span>
+                </li>
+              </ol>
+            </div>
+            <p className="text-center text-sm opacity-90">Check your email for updates. Welcome to the journey! 👑</p>
           </div>
         )}
 
