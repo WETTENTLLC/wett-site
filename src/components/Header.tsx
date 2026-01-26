@@ -5,12 +5,10 @@ import { useAuth } from '@/lib/AuthContext';
 import { useRouter } from 'next/navigation';
 
 const navigationItems = [
-  { href: '/empire', label: 'The Empire' },
-  { href: '/family', label: 'The Family' },
-  { href: '/blueprint', label: 'The Blueprint' },
-  { href: '/collective', label: 'The Collective' },
+  { href: '/empire', label: 'Empire' },
+  { href: '/family', label: 'Community' },
+  { href: '/blueprint', label: 'Courses' },
   { href: '/shop', label: 'Shop' },
-  { href: '/events', label: 'Events' },
 ];
 
 const Header = () => {
