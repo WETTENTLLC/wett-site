@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import PayWhatYouWant from '@/components/PayWhatYouWant';
 import { courseService } from '@/lib/courseProgress';
 
@@ -22,12 +23,6 @@ export default function EtiquetteSchool() {
     courseService.enrollInCourse(courseId);
     setEnrolled(true);
     alert('✅ Enrolled in The Bag Builder!\n\nYour course access has been activated.\nScroll down to start Lesson 1.\n\nComplete all lessons and quizzes to earn your certification.');
-  };
-
-  const markLessonComplete = (lessonId: string) => {
-    courseService.completeLesson(courseId, lessonId);
-    setProgress(courseService.getCompletionPercentage(courseId, totalLessons));
-    alert('✅ Lesson Completed!\n\nGreat work! Continue to the next lesson.');
   };
 
   return (
@@ -121,113 +116,124 @@ export default function EtiquetteSchool() {
             </div>
 
             <div className="space-y-4">
-              <div className="bg-gray-700 p-6 rounded-lg">
+              <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-xl font-bold text-white">Lesson 1: The Three Pillars</h3>
-                  <button 
-                    onClick={() => markLessonComplete('lesson-1')}
-                    disabled={courseService.isLessonCompleted(courseId, 'lesson-1')}
-                    className="bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {courseService.isLessonCompleted(courseId, 'lesson-1') ? '✅ Complete' : 'Mark Complete'}
-                  </button>
+                  {courseService.isLessonCompleted(courseId, 'lesson-1') && (
+                    <span className="text-green-400 font-bold">✅ Complete</span>
+                  )}
                 </div>
-                <div className="text-gray-300 space-y-4">
+                <div className="text-gray-300 space-y-3 mb-4">
                   <p><strong>Topics:</strong> Consideration, Respect, Authenticity</p>
                   <p><strong>Scenarios:</strong> 5 real-world examples with solutions</p>
                   <p><strong>Homework:</strong> 3-day observation challenge with logging template</p>
-                  <p className="text-sm italic">Full detailed content, scenarios, and homework instructions available in your course materials.</p>
                 </div>
+                <Link 
+                  href="/blueprint/etiquette-school/lesson-1"
+                  className="inline-block bg-wett-gold text-black px-6 py-2 rounded font-bold hover:bg-yellow-400 transition"
+                >
+                  {courseService.isLessonCompleted(courseId, 'lesson-1') ? 'Review Lesson' : 'Start Lesson'}
+                </Link>
               </div>
 
-              <div className="bg-gray-700 p-6 rounded-lg">
+              <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-xl font-bold text-white">Lesson 2: The Non-Negotiables</h3>
-                  <button 
-                    onClick={() => markLessonComplete('lesson-2')}
-                    disabled={courseService.isLessonCompleted(courseId, 'lesson-2')}
-                    className="bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {courseService.isLessonCompleted(courseId, 'lesson-2') ? '✅ Complete' : 'Mark Complete'}
-                  </button>
+                  {courseService.isLessonCompleted(courseId, 'lesson-2') && (
+                    <span className="text-green-400 font-bold">✅ Complete</span>
+                  )}
                 </div>
-                <div className="text-gray-300 space-y-4">
+                <div className="text-gray-300 space-y-3 mb-4">
                   <p><strong>Topics:</strong> Punctuality, Personal Presence, Digital Pause</p>
                   <p><strong>Scenarios:</strong> Business meeting timing, dress code examples</p>
                   <p><strong>Homework:</strong> Digital audit + appearance test with checklist</p>
                 </div>
+                <Link 
+                  href="/blueprint/etiquette-school/lesson-2"
+                  className="inline-block bg-wett-gold text-black px-6 py-2 rounded font-bold hover:bg-yellow-400 transition"
+                >
+                  {courseService.isLessonCompleted(courseId, 'lesson-2') ? 'Review Lesson' : 'Start Lesson'}
+                </Link>
               </div>
 
-              <div className="bg-gray-700 p-6 rounded-lg">
+              <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-xl font-bold text-white">Lesson 3: Making Introductions</h3>
-                  <button 
-                    onClick={() => markLessonComplete('lesson-3')}
-                    disabled={courseService.isLessonCompleted(courseId, 'lesson-3')}
-                    className="bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {courseService.isLessonCompleted(courseId, 'lesson-3') ? '✅ Complete' : 'Mark Complete'}
-                  </button>
+                  {courseService.isLessonCompleted(courseId, 'lesson-3') && (
+                    <span className="text-green-400 font-bold">✅ Complete</span>
+                  )}
                 </div>
-                <div className="text-gray-300 space-y-4">
+                <div className="text-gray-300 space-y-3 mb-4">
                   <p><strong>Topics:</strong> Status Rule, Perfect Handshake, Eye Contact</p>
                   <p><strong>Scenarios:</strong> Client introductions, networking events</p>
                   <p><strong>Homework:</strong> Practice 5 introductions + handshake drills</p>
                 </div>
+                <Link 
+                  href="/blueprint/etiquette-school/lesson-3"
+                  className="inline-block bg-wett-gold text-black px-6 py-2 rounded font-bold hover:bg-yellow-400 transition"
+                >
+                  {courseService.isLessonCompleted(courseId, 'lesson-3') ? 'Review Lesson' : 'Start Lesson'}
+                </Link>
               </div>
 
-              <div className="bg-gray-700 p-6 rounded-lg">
+              <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-xl font-bold text-white">Lesson 4: Conversation & Listening</h3>
-                  <button 
-                    onClick={() => markLessonComplete('lesson-4')}
-                    disabled={courseService.isLessonCompleted(courseId, 'lesson-4')}
-                    className="bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {courseService.isLessonCompleted(courseId, 'lesson-4') ? '✅ Complete' : 'Mark Complete'}
-                  </button>
+                  {courseService.isLessonCompleted(courseId, 'lesson-4') && (
+                    <span className="text-green-400 font-bold">✅ Complete</span>
+                  )}
                 </div>
-                <div className="text-gray-300 space-y-4">
+                <div className="text-gray-300 space-y-3 mb-4">
                   <p><strong>Topics:</strong> Active Listening, Conversational Courtesies, Vibe Killers</p>
                   <p><strong>Scenarios:</strong> Client meetings, party conversations</p>
                   <p><strong>Homework:</strong> 10-minute listening audit + topic pivot practice</p>
                 </div>
+                <Link 
+                  href="/blueprint/etiquette-school/lesson-4"
+                  className="inline-block bg-wett-gold text-black px-6 py-2 rounded font-bold hover:bg-yellow-400 transition"
+                >
+                  {courseService.isLessonCompleted(courseId, 'lesson-4') ? 'Review Lesson' : 'Start Lesson'}
+                </Link>
               </div>
 
-              <div className="bg-gray-700 p-6 rounded-lg">
+              <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-xl font-bold text-white">Lesson 5: Dining Etiquette</h3>
-                  <button 
-                    onClick={() => markLessonComplete('lesson-5')}
-                    disabled={courseService.isLessonCompleted(courseId, 'lesson-5')}
-                    className="bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {courseService.isLessonCompleted(courseId, 'lesson-5') ? '✅ Complete' : 'Mark Complete'}
-                  </button>
+                  {courseService.isLessonCompleted(courseId, 'lesson-5') && (
+                    <span className="text-green-400 font-bold">✅ Complete</span>
+                  )}
                 </div>
-                <div className="text-gray-300 space-y-4">
+                <div className="text-gray-300 space-y-3 mb-4">
                   <p><strong>Topics:</strong> BMW Rule, Place Settings, 4:20 Signal, Bathroom Etiquette</p>
                   <p><strong>Scenarios:</strong> 5-course formal dinner, business lunch</p>
                   <p><strong>Homework:</strong> Set proper place setting + practice signals at restaurant</p>
                 </div>
+                <Link 
+                  href="/blueprint/etiquette-school/lesson-5"
+                  className="inline-block bg-wett-gold text-black px-6 py-2 rounded font-bold hover:bg-yellow-400 transition"
+                >
+                  {courseService.isLessonCompleted(courseId, 'lesson-5') ? 'Review Lesson' : 'Start Lesson'}
+                </Link>
               </div>
 
-              <div className="bg-gray-700 p-6 rounded-lg">
+              <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-xl font-bold text-white">Lesson 6: Professional Edge</h3>
-                  <button 
-                    onClick={() => markLessonComplete('lesson-6')}
-                    disabled={courseService.isLessonCompleted(courseId, 'lesson-6')}
-                    className="bg-wett-gold text-black px-4 py-2 rounded font-bold hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {courseService.isLessonCompleted(courseId, 'lesson-6') ? '✅ Complete' : 'Mark Complete'}
-                  </button>
+                  {courseService.isLessonCompleted(courseId, 'lesson-6') && (
+                    <span className="text-green-400 font-bold">✅ Complete</span>
+                  )}
                 </div>
-                <div className="text-gray-300 space-y-4">
+                <div className="text-gray-300 space-y-3 mb-4">
                   <p><strong>Topics:</strong> Email Etiquette, Video Calls, Meeting Presence</p>
                   <p><strong>Scenarios:</strong> Professional email examples, Zoom interview setup</p>
                   <p><strong>Homework:</strong> Draft professional email + prep video call environment</p>
                 </div>
+                <Link 
+                  href="/blueprint/etiquette-school/lesson-6"
+                  className="inline-block bg-wett-gold text-black px-6 py-2 rounded font-bold hover:bg-yellow-400 transition"
+                >
+                  {courseService.isLessonCompleted(courseId, 'lesson-6') ? 'Review Lesson' : 'Start Lesson'}
+                </Link>
               </div>
             </div>
 

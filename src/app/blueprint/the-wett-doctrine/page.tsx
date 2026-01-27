@@ -1,9 +1,43 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { courseService } from '@/lib/courseProgress';
+
 export default function WettDoctrinePage() {
+  const router = useRouter();
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [showCompletionMessage, setShowCompletionMessage] = useState(false);
+
+  useEffect(() => {
+    // Check if already completed
+    const progress = courseService.getCourseProgress('wett-doctrine');
+    if (progress && progress.completed) {
+      setIsCompleted(true);
+    }
+  }, []);
+
+  const handleMarkComplete = () => {
+    courseService.markCourseComplete('wett-doctrine');
+    setIsCompleted(true);
+    setShowCompletionMessage(true);
+    
+    setTimeout(() => {
+      router.push('/blueprint/etiquette-school');
+    }, 3000);
+  };
+
   return (
     <div className="container mx-auto py-12 px-4">
       <h1 className="text-4xl font-bold text-wett-gold mb-8">The WETT Doctrine</h1>
       <p className="text-lg text-gray-300 mb-12">&quot;We Thrive Together&quot; - The foundational philosophy that powers the WETT empire.</p>
       
+      {showCompletionMessage && (
+        <div className="bg-green-600 text-white p-6 rounded-lg mb-8 animate-pulse">
+          <h2 className="text-2xl font-bold mb-2">🎉 Course Completed!</h2>
+          <p>Redirecting you to WETT Etiquette School...</p>
+        </div>
+      )}
       <div className="bg-gray-800 p-6 rounded-lg mb-8">
         <h2 className="text-3xl font-bold text-wett-gold mb-4">Core Principles</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -68,10 +102,28 @@ export default function WettDoctrinePage() {
       <div className="bg-gray-800 p-6 rounded-lg">
         <h2 className="text-2xl font-bold text-wett-gold mb-4">Apply the Doctrine</h2>
         <p className="text-gray-300 mb-4">Ready to implement these principles in your life and business?</p>
-        <div className="flex gap-4">
-          <a href="/blueprint/group-economics-mastery" className="bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">Take the Course</a>
-          <a href="/family" className="border-2 border-wett-gold text-wett-gold px-6 py-3 rounded-lg font-bold hover:bg-wett-gold hover:text-black transition">Join the Family</a>
-        </div>
+        
+        {!isCompleted ? (
+          <div className="space-y-4">
+            <p className="text-yellow-300 font-semibold">✓ Read all sections above to understand the WETT philosophy</p>
+            <button 
+              onClick={handleMarkComplete}
+              className="bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition w-full"
+            >
+              Mark Complete & Continue to Etiquette School
+            </button>
+          </div>
+        ) : (
+          <div className="bg-green-700 p-4 rounded-lg">
+            <p className="text-white font-bold mb-2">✅ Course Completed!</p>
+            <a 
+              href="/blueprint/etiquette-school" 
+              className="inline-block bg-wett-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition"
+            >
+              Continue to Etiquette School →
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );

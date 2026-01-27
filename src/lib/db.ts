@@ -105,3 +105,21 @@ export async function getUserCourses(userId: number) {
   `;
   return result;
 }
+
+export async function updateCourseProgress(userId: number, courseName: string, progress: number, completed: boolean) {
+  const result = await sql`
+    UPDATE course_enrollments 
+    SET progress = ${progress}, completed = ${completed}
+    WHERE user_id = ${userId} AND course_name = ${courseName}
+    RETURNING *
+  `;
+  return result[0];
+}
+
+export async function getCourseEnrollment(userId: number, courseName: string) {
+  const result = await sql`
+    SELECT * FROM course_enrollments 
+    WHERE user_id = ${userId} AND course_name = ${courseName}
+  `;
+  return result[0];
+}
