@@ -25,6 +25,21 @@ export default function EtiquetteSchool() {
     alert('✅ Enrolled in The Bag Builder!\n\nYour course access has been activated.\nScroll down to start Lesson 1.\n\nComplete all lessons and quizzes to earn your certification.');
   };
 
+  // Auto-enroll for authorized users
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const accessCode = urlParams.get('access');
+    
+    // Check for valid access code or existing enrollment
+    if (accessCode === 'wett-girl-approved' || localStorage.getItem('wett-girl-approved')) {
+      if (!enrolled) {
+        localStorage.setItem('wett-girl-approved', 'true');
+        courseService.enrollInCourse(courseId);
+        setEnrolled(true);
+      }
+    }
+  }, [enrolled]);
+
   return (
     <div className="container mx-auto py-12 px-4">
       <h1 className="text-5xl font-bold text-wett-gold mb-4 text-center">WETT Etiquette School</h1>
